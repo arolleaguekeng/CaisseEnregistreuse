@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace CaisseEnregistreuse.BO
 {
-    public class Class1
+    public class Caissier
     {
+        public int Matricule { get; set; }
+        public string Nom { get; set; }
     }
 }
