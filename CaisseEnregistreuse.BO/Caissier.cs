@@ -10,5 +10,17 @@ namespace CaisseEnregistreuse.BO
     {
         public int Matricule { get; set; }
         public string Nom { get; set; }
+        public string MotDePasse { get; set; }
+        public Caissier()
+        {
+
+        }
+
+        public Caissier(int matricule, string nom, string motDePasse)
+        {
+            Matricule = matricule;
+            Nom = nom;
+            MotDePasse = motDePasse;
+        }
     }
 }

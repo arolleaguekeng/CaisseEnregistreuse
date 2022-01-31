@@ -13,32 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaisseEnregistreuse.BLL", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaisseEnregistreuse.common", "CaisseEnregistreuse.common\CaisseEnregistreuse.common.csproj", "{0D7F6034-69F5-4926-A403-75B61D6D969C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CaisseEnregistreuse.DbScript", "CaisseEnregistreuse.DbScript", "{9D3C5105-1899-45D3-9025-FF73B558FA36}"
-	ProjectSection(SolutionItems) = preProject
-		SqlQuery_1.sql = SqlQuery_1.sql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "StoredProcedures", "StoredProcedures", "{2A95BCF6-5808-499E-BABD-0986F56681D1}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "object", "object", "{B780D9DE-AF35-4471-8F4B-4A98E5A5B9A6}"
-	ProjectSection(SolutionItems) = preProject
-		SqlQuery_2.sql = SqlQuery_2.sql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tables", "tables", "{62AB7C0C-7F1B-4277-AFFD-25986935E0D5}"
-	ProjectSection(SolutionItems) = preProject
-		SqlQuery_3.sql = SqlQuery_3.sql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "constrains", "constrains", "{9A032715-879A-434C-85D1-CCB6B74F324F}"
-	ProjectSection(SolutionItems) = preProject
-		SqlQuery_4.sql = SqlQuery_4.sql
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "datas", "datas", "{FC3E297B-9289-47CE-86F3-2906ED98AE13}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "features", "features", "{6EDAE4D6-6A5A-4348-9E67-9431E7A1C368}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,14 +42,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{2A95BCF6-5808-499E-BABD-0986F56681D1} = {6EDAE4D6-6A5A-4348-9E67-9431E7A1C368}
-		{B780D9DE-AF35-4471-8F4B-4A98E5A5B9A6} = {9D3C5105-1899-45D3-9025-FF73B558FA36}
-		{62AB7C0C-7F1B-4277-AFFD-25986935E0D5} = {B780D9DE-AF35-4471-8F4B-4A98E5A5B9A6}
-		{9A032715-879A-434C-85D1-CCB6B74F324F} = {B780D9DE-AF35-4471-8F4B-4A98E5A5B9A6}
-		{FC3E297B-9289-47CE-86F3-2906ED98AE13} = {9D3C5105-1899-45D3-9025-FF73B558FA36}
-		{6EDAE4D6-6A5A-4348-9E67-9431E7A1C368} = {9D3C5105-1899-45D3-9025-FF73B558FA36}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {573D1A1A-CA17-4578-9AFA-45672030A042}
