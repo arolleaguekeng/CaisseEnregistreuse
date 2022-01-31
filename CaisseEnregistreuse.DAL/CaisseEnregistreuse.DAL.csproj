@@ -47,11 +47,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sql.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="CaisseEnregistreuse.DbScript\datas\" />
-    <Folder Include="CaisseEnregistreuse.DbScript\features\storeProcedures\" />
-    <Folder Include="CaisseEnregistreuse.DbScript\object\constrains\" />
-    <Folder Include="CaisseEnregistreuse.DbScript\object\tables\" />
+    <Content Include="CaisseEnregistreuse.DbScript\datas\readme.txt" />
+    <Content Include="CaisseEnregistreuse.DbScript\features\readme.txt" />
+    <Content Include="CaisseEnregistreuse.DbScript\features\storeProcedures\readme.txt" />
+    <Content Include="CaisseEnregistreuse.DbScript\object\constrains\readme.txt" />
+    <Content Include="CaisseEnregistreuse.DbScript\object\readme.txt" />
+    <Content Include="CaisseEnregistreuse.DbScript\object\tables\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
