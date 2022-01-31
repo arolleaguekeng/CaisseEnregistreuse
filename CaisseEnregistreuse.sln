@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaisseEnregistreuse.DAL", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaisseEnregistreuse.BLL", "CaisseEnregistreuse.BLL\CaisseEnregistreuse.BLL.csproj", "{C9D6ECB4-AB31-4B81-97AD-237F2DC90DBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaisseEnregistreuse.common", "CaisseEnregistreuse.common\CaisseEnregistreuse.common.csproj", "{0D7F6034-69F5-4926-A403-75B61D6D969C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C9D6ECB4-AB31-4B81-97AD-237F2DC90DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9D6ECB4-AB31-4B81-97AD-237F2DC90DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9D6ECB4-AB31-4B81-97AD-237F2DC90DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D7F6034-69F5-4926-A403-75B61D6D969C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D7F6034-69F5-4926-A403-75B61D6D969C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D7F6034-69F5-4926-A403-75B61D6D969C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D7F6034-69F5-4926-A403-75B61D6D969C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
