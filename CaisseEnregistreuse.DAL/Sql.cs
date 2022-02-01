@@ -19,7 +19,7 @@ namespace Junior.DAL
             factory = DbProviderFactories.GetFactory(providerName);
         }
 
-        public Sql(string connectionStringName) :
+        public Sql(string connectionStringName):
             this(ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString,
                 ConfigurationManager.ConnectionStrings[connectionStringName].ProviderName)
         {
