@@ -14,7 +14,7 @@ namespace CaisseEnregistreuse.BO
         public double Solde { get; set; }
         public Panier()
         {
-
+            Achats = new List<Achat>();
         }
 
         public Panier(int numero, DateTime date, List<Achat> achats, double solde)
