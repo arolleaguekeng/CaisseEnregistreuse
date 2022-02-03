@@ -53,6 +53,10 @@
       <Project>{1028A8F9-6BA1-4611-9073-2B465379D27C}</Project>
       <Name>CaisseEnregistreuse.BO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CaisseEnregistreuse.DAL\CaisseEnregistreuse.DAL.csproj">
+      <Project>{A94DB51C-555B-466D-82DB-B23232E8646D}</Project>
+      <Name>CaisseEnregistreuse.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
