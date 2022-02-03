@@ -9,10 +9,9 @@ ADD constraint fk_code
 foreign key (code) references produit (code)
 go
 
-
-ALTER table panier
-ADD constraint fk_achat
-foreign key (id_achat) references achat (id_achat)
+ALTER table achat
+ADD constraint fk_numero
+foreign key (numero) references produit (numero)
 go
 
 

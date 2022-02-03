@@ -16,10 +16,10 @@ go
 
 
 create table achat(
-    id_achat int IDENTITY PRIMARY KEY NOT NULL,
     quantite int NOT NULL,
     montant float NOT NULL,
-    code NVARCHAR(6) NOT NULL
+    code NVARCHAR(6) NOT NULL,
+	numero int NOT NULL
     
 )
 go
@@ -32,17 +32,15 @@ create table caissier(
 go
 
 create table panier(
-    numero int PRIMARY KEY NOT NULL,
+    numero int IDENTITY PRIMARY KEY NOT NULL,
     date Date NOT NULL,
-    solde float NOT NULL,
-    id_achat int NOT NULL
+    solde float NOT NULL
    
 )
 go
 
 
 create table ticket(
-    id_ticket int PRIMARY KEY NOT NULL,
     remise float NOT NULL,
     netApayer float NOT NULL,
     numero int NOT NULL,
