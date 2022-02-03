@@ -12,6 +12,7 @@ namespace CaisseEnregistreuse.BO
         public Produit _Produit { get; set; }
         public int Quantite { get; set; }
         public double Montant { get; set; }
+        public int NumeroPanier { get; set; }
        
 
         public Achat()
@@ -24,6 +25,9 @@ namespace CaisseEnregistreuse.BO
             _Produit = produit;
             Quantite = quantite;
             Montant = montant;
+            NumeroPanier = Panier.Numero;
         }
+
+        
     }
 }

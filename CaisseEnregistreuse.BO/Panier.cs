@@ -8,7 +8,7 @@ namespace CaisseEnregistreuse.BO
 {
     public class Panier
     {
-        public int Numero { get; set; }
+        public static int Numero { get; set; }
         public DateTime Date { get; set; }
         public List<Achat> Achats { get; set; }
         public double Solde { get; set; }
