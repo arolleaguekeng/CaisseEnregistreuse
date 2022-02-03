@@ -43,11 +43,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchatDAO.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="PanierDAO.cs" />
+    <Compile Include="ProduitDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sql.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CaisseEnregistreuse.BO\CaisseEnregistreuse.BO.csproj">
+      <Project>{1028a8f9-6ba1-4611-9073-2b465379d27c}</Project>
+      <Name>CaisseEnregistreuse.BO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CaisseEnregistreuse.common\CaisseEnregistreuse.common.csproj">
+      <Project>{0d7f6034-69f5-4926-a403-75b61d6d969c}</Project>
+      <Name>CaisseEnregistreuse.common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="CaisseEnregistreuse.DbScript\datas\readme.txt" />
     <Content Include="CaisseEnregistreuse.DbScript\features\readme.txt" />

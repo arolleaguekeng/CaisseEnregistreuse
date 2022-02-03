@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace CaisseEnregistreuse.BO
 {
     public class Achat
     {
+
         public Produit _Produit { get; set; }
         public int Quantite { get; set; }
         public double Montant { get; set; }
+        public int NumeroPanier { get; set; }
 
         public Achat()
         {
@@ -22,6 +19,11 @@ namespace CaisseEnregistreuse.BO
             _Produit = produit;
             Quantite = quantite;
             Montant = montant;
+            NumeroPanier = Panier.Numero;
+        }
+        public Achat(Produit produit, int quantite, double montant, int numeroPanier):this(produit, quantite, montant)
+        {
+            NumeroPanier = numeroPanier;
         }
     }
 }

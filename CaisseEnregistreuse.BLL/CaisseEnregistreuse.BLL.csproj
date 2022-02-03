@@ -42,7 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AchatManager.cs" />
     <Compile Include="CaissierManager.cs" />
+    <Compile Include="PanierManager.cs" />
+    <Compile Include="ProduitManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

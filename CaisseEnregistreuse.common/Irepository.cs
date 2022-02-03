@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CaisseEnregistreuse.common
 {
-    interface Irepository<T>
+    public interface IRepository<T>
     {
         T Add(T t);
         T Get(T t);
