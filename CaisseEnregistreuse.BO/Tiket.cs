@@ -12,9 +12,11 @@ namespace CaisseEnregistreuse.BO
         public float Remise { get; set; }
         public double NetAPayer { get; set; }
         public Caissier _Caissier { get; set; }
+        
         public Tiket()
         {
-
+            _Panier = new Panier();
+            _Caissier = new Caissier();
         }
 
         public Tiket(Panier panier, float remise, double netAPayer, Caissier caissier)
