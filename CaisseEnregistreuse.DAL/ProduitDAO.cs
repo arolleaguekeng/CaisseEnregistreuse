@@ -35,7 +35,7 @@ namespace CaisseEnregistreuse.DAL
         {
             return new Sql.Parameter[]
             {
-                new Sql.Parameter("code", System.Data.DbType.String, (object)p.Code??DBNull.Value, System.Data.ParameterDirection.Output),
+                new Sql.Parameter("code", System.Data.DbType.String, (object)p.Code??DBNull.Value),
                 new Sql.Parameter("designation", System.Data.DbType.String, (object)p.Designation ?? DBNull.Value),
                 new Sql.Parameter("prixAchat", System.Data.DbType.Double, p.PrixAchat == 0?DBNull.Value:(object)p.PrixAchat),
                 new Sql.Parameter("prixVente", System.Data.DbType.Double, p.PrixVente == 0?DBNull.Value:(object)p.PrixVente)
