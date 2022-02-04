@@ -1,6 +1,4 @@
-﻿
-
-using CaisseEnregistreuse.BO;
+﻿using CaisseEnregistreuse.BO;
 using CaisseEnregistreuse.common;
 using Junior.DAL;
 using System;
@@ -51,7 +49,7 @@ namespace CaisseEnregistreuse.DAL
                 new Sql.Parameter("code", System.Data.DbType.String, (object)achat._Produit.Code??DBNull.Value, System.Data.ParameterDirection.Output),
                 new Sql.Parameter("quantite", System.Data.DbType.Int64, achat.Quantite == 0?DBNull.Value:(object)achat.Quantite),
                 new Sql.Parameter("montant", System.Data.DbType.Double, achat.Montant == 0?DBNull.Value:(object)achat.Montant),
-                new Sql.Parameter("numeroPanier", System.Data.DbType.Int64, achat.NumeroPanier == 0?DBNull.Value:(object)achat.NumeroPanier)
+                new Sql.Parameter("numero", System.Data.DbType.Int64, achat.NumeroPanier == 0?DBNull.Value:(object)achat.NumeroPanier)
 
             };
         }

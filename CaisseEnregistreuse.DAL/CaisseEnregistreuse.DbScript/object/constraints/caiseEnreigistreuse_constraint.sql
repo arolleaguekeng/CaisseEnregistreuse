@@ -4,6 +4,8 @@
 
 
 use CaisseEnreigistreuse;
+
+
 ALTER table achat
 ADD constraint fk_code
 foreign key (code) references produit (code)
