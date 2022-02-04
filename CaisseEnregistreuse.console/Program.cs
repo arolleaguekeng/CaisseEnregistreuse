@@ -1,4 +1,5 @@
 ﻿using CaisseEnregistreuse.BLL;
+using CaisseEnregistreuse.BO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,10 @@ namespace CaisseEnregistreuse.console
     {
         static void Main(string[] args)
         {
-            CaissierManager manager = new CaissierManager();
+            
+            
+
+
         }
     }
 }

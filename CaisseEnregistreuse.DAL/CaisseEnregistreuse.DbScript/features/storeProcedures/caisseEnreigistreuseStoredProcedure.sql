@@ -33,10 +33,10 @@ go
 
 CREATE PROCEDURE sp_achat_select
 (
-    @id_achat int = NULL,
     @quantite int = NULL,
     @montant float = NULL,
-    @code NVARCHAR(6) = NULL
+    @code NVARCHAR(6) = NULL,
+    @numero int = NULL
 )
 AS
 BEGIN
@@ -52,8 +52,8 @@ CREATE PROCEDURE sp_panier_select
 (
     @numero int = NULL,
     @date Date = NULL,
-    @solde float = NULL,
-    @id_achat int = NULL
+    @solde float = NULL
+   
 )
 AS
 BEGIN
@@ -66,11 +66,10 @@ go
 
 CREATE PROCEDURE sp_ticket_select
 (
-    @id_ticket int = NULL,
     @remise float = NULL,
     @netApayer float = NULL,
-    @numero int = NULL,
-    @matricule NVARCHAR(11) = NULL
+    @matricule NVARCHAR(11) = NULL,
+    @numero int = NULL
 )
 AS
 BEGIN
@@ -84,12 +83,84 @@ go
 
 
 
+CREATE PROCEDURE sp_achat_insert
+(
+    @quantite int = NULL,
+    @montant float = NULL,
+    @code NVARCHAR(6) = NULL,
+    @numero int = NULL
+)
+AS
+BEGIN
+    INSERT INTO achat
+    (
+      quantite,
+      montant,
+      code,
+      numero)
+    VALUES(
+      @quantite,
+      @montant,
+      @code,
+      @numero
+    )
+END
+go
 
 
 
+CREATE PROCEDURE sp_panier_insert
+(
+ @numero NVARCHAR(6) = NULL,
+ @date Date = NULL,
+ @solde float = NULL
+
+)
+AS
+BEGIN
+   INSERT INTO panier
+    (
+      numero,
+      date,
+      solde
+    )
+    VALUES(
+      @numero,
+      @date,
+      @solde
+     
+    )
+END
+go
 
 
 
+CREATE PROCEDURE Sp_Tiket_Insert
+(
+ @remise float = NULL,
+ @netApayer float = NULL,
+ @numero int = NULL,
+ @matricule NVARCHAR(11) = NULL
+
+)
+AS
+BEGIN
+   INSERT INTO Panier
+    (
+      remise,
+      netApayer,
+      numero,
+      matricule
+    )
+    VALUES(
+      @remise,
+      @netApayer,
+      @numero,
+      @matricule
+     
+    )
+END
+go
 
 
 

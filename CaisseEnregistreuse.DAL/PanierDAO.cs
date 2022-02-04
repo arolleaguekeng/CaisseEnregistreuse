@@ -39,7 +39,7 @@ namespace CaisseEnregistreuse.DAL
 
         public IEnumerable<Panier> Find(Panier p)
         {
-            return sql.Read<Panier>("sp_panier__select", GetParameter(p), GetPanier, true);
+            return sql.Read<Panier>("sp_panier_select", GetParameter(p), GetPanier, true);
         }
         private IEnumerable<Sql.Parameter> GetParameter(Panier panier)
         {

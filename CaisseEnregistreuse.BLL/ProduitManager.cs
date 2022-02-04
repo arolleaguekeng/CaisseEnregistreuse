@@ -2,12 +2,15 @@
 
 using CaisseEnregistreuse.BO;
 using CaisseEnregistreuse.DAL;
+using System.Collections.Generic;
 
 namespace CaisseEnregistreuse.BLL
 {
     public class ProduitManager
     {
+
         private ProduitDAO produitDAO;
+
         public ProduitManager()
         {
             produitDAO = new ProduitDAO();
@@ -17,5 +20,7 @@ namespace CaisseEnregistreuse.BLL
         {
             return produitDAO.Get(produit);
         }
+
+       
     }
 }

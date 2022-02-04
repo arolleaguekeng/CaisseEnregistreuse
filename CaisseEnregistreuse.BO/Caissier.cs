@@ -8,14 +8,14 @@ namespace CaisseEnregistreuse.BO
 {
     public class Caissier
     {
-        public int Matricule { get; set; }
+        public string Matricule { get; set; }
         public string Nom { get; set; }
         public Caissier()
         {
 
         }
 
-        public Caissier(int matricule, string nom)
+        public Caissier(string matricule, string nom) 
         {
             Matricule = matricule;
             Nom = nom;

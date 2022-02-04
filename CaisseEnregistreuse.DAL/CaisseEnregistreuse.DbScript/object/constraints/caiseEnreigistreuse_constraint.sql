@@ -3,6 +3,8 @@
 -----------------------contrainte de la bd caisse enreigistreuse
 
 
+use CaisseEnreigistreuse;
+
 
 ALTER table achat
 ADD constraint fk_code
@@ -11,7 +13,7 @@ go
 
 ALTER table achat
 ADD constraint fk_numero
-foreign key (numero) references produit (numero)
+foreign key (numero) references panier (numero)
 go
 
 

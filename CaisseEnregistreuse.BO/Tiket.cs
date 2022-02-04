@@ -9,7 +9,7 @@ namespace CaisseEnregistreuse.BO
     public class Tiket
     {
         public Panier _Panier { get; set; }
-        public float Remise { get; set; }
+        public double Remise { get; set; }
         public double NetAPayer { get; set; }
         public Caissier _Caissier { get; set; }
         
@@ -19,7 +19,7 @@ namespace CaisseEnregistreuse.BO
             _Caissier = new Caissier();
         }
 
-        public Tiket(Panier panier, float remise, double netAPayer, Caissier caissier)
+        public Tiket(Panier panier, double remise, double netAPayer, Caissier caissier)
         {
             _Panier = panier;
             Remise = remise;
