@@ -1,9 +1,11 @@
 -------CREATION DE LA BASE DE DONNEE CaisseEnreigistreuse
 
 create database caisseEnregistreuse;
+go
 
 
-use caisseEnregistreuse
+use caisseEnregistreuse;
+go
 
 
 create table produit(
