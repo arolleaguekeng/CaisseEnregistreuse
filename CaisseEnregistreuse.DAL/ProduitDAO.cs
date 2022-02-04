@@ -3,6 +3,7 @@ using CaisseEnregistreuse.BO;
 using Junior.DAL;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CaisseEnregistreuse.DAL
 {
@@ -16,8 +17,10 @@ namespace CaisseEnregistreuse.DAL
 
         public Produit Get(Produit p)
         {
-            var dataReader = sql.Read("sp_produit_select", GetParameter(p), true);
-            return GetProduit(dataReader);
+            return sql.Read<Produit>("sp_produit_select", 
+                            GetParameter(p), 
+                            GetProduit, 
+                            true)?.FirstOrDefault();
         }
 
         private Produit GetProduit(System.Data.Common.DbDataReader dataReader)

@@ -21,17 +21,21 @@ namespace CaisseEnregistreuse.DAL
 
         public Caissier Get(Caissier caissier)
         {
-            var datareader = sql.Read("sp_caissier_select", GetParameter(caissier), true);
-            return GetCaissier(datareader);
+            return sql.Read<Caissier>
+                (
+                "sp_caissier_select", GetParameter(caissier), GetCaissier, true
+                )?.FirstOrDefault();
+           
         }
 
         private Caissier GetCaissier(DbDataReader datareader)
         {
- 
-            Caissier caissier = new Caissier(
-                "kjlml", "kmlkjmj"
-                );
-            return caissier;
+
+            return  new Caissier(
+                datareader["matricule"].ToString(),
+                datareader["nom"].ToString()
+                ) ;
+           
         }
         private IEnumerable<Sql.Parameter> GetParameter(Caissier caissier)
         {

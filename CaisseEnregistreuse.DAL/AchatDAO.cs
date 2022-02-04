@@ -3,6 +3,7 @@ using CaisseEnregistreuse.common;
 using Junior.DAL;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CaisseEnregistreuse.DAL
 {
@@ -22,8 +23,8 @@ namespace CaisseEnregistreuse.DAL
 
         public Achat Get(Achat achat)
         {
-            var datareader = sql.Read("sp_achat_select", GetParmeter(achat), true);
-            return GetAchat(datareader);
+            return sql.Read<Achat>("sp_achat_select", GetParmeter(achat), GetAchat, true)?.FirstOrDefault();
+            
         }
 
         private Achat GetAchat(System.Data.Common.DbDataReader datareader)

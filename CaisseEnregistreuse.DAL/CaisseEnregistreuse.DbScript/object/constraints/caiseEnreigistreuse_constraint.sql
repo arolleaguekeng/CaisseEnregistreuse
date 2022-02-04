@@ -19,7 +19,7 @@ go
 
 
 ALTER table ticket
-ADD constraint fk_numero
+ADD constraint fk_numeroTK
 foreign key (numero) references panier (numero)
 go
 
