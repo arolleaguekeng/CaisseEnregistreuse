@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CaisseEnregistreuse.BO
 {
@@ -15,6 +12,7 @@ namespace CaisseEnregistreuse.BO
         public Panier()
         {
             Achats = new List<Achat>();
+            Numero++;
         }
 
         public Panier(DateTime date, List<Achat> achats)

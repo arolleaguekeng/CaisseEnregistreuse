@@ -14,14 +14,14 @@ namespace CaisseEnregistreuse.BO
 
         }
 
-        public Achat(Produit produit, int quantite, double montant)
+        public Achat(Produit produit, int quantite)
         {
             _Produit = produit;
             Quantite = quantite;
-            Montant = montant;
+            Montant = quantite * produit.PrixAchat;
             NumeroPanier = Panier.Numero;
         }
-        public Achat(Produit produit, int quantite, double montant, int numeroPanier):this(produit, quantite, montant)
+        public Achat(Produit produit, int quantite, int numeroPanier):this(produit, quantite)
         {
             NumeroPanier = numeroPanier;
         }

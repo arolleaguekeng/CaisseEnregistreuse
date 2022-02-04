@@ -35,7 +35,6 @@ namespace CaisseEnregistreuse.DAL
             (
                 produit.Get(new Produit { Code = datareader["code"].ToString()}),
                 int.Parse(datareader["quantite"].ToString()),
-                double.Parse(datareader["montant"].ToString()),
                 int.Parse(datareader["numeroPanier"].ToString())
             ) ;
         }
