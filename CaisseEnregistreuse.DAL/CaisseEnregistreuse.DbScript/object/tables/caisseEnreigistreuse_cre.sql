@@ -3,7 +3,7 @@
 create database caisseEnregistreuse;
 
 
-use caisseEnregistreuse;
+use caisseEnregistreuse
 
 
 create table produit(

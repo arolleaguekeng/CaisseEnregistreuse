@@ -40,33 +40,40 @@ INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD23CE', 'g
 INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD24CE', 'pot de miel pure 500g', 3500, 5000);
 
 
-------------------caisse enregistreuse achat---------------------------------
-INSERT INTO achat(quantite, montant, code) VALUES(2, 42000, 'PD01CE', 1)
-INSERT INTO achat(quantite, montant, code) VALUES(5, 19500, 'PD02CE', 1)
-INSERT INTO achat(quantite, montant, code) VALUES(3, 15000, 'PD03CE', 1)
-INSERT INTO achat(quantite, montant, code) VALUES(1, 13500, 'PD04CE', 2)
-INSERT INTO achat(quantite, montant, code) VALUES(3, 15000, 'PD05CE', 2)
-INSERT INTO achat(quantite, montant, code) VALUES(1, 4000, 'PD06CE', 2)
-INSERT INTO achat(quantite, montant, code) VALUES(2, 2000, 'PD07CE', 3)
-INSERT INTO achat(quantite, montant, code) VALUES(1, 2000, 'PD08CE', 3)
-INSERT INTO achat(quantite, montant, code) VALUES(2, 3600, 'PD09CE', 1)
-INSERT INTO achat(quantite, montant, code) VALUES(1, 13500, 'PD04CE', 4)
-INSERT INTO achat(quantite, montant, code) VALUES(3, 3000, 'PD05CE', 4)
-INSERT INTO achat(quantite, montant, code) VALUES(1, 2000, 'PD06CE', 4)
-
-
 
 --------------------caise enregistreuse panier------------------------------ 
-INSERT INTO panier(numero, date, solde) VALUES (1, '12/10/2021', 80100);
-INSERT INTO panier(numero, date, solde) VALUES (2, '12/10/2021', 32500);
-INSERT INTO panier(numero, date, solde) VALUES (3, '12/10/2021', 4000);
-INSERT INTO panier(numero, date, solde) VALUES (4, '12/10/2021', 18500);
+INSERT INTO panier(date, solde) VALUES ('12/10/2021', 80100);
+INSERT INTO panier(date, solde) VALUES ('12/10/2021', 32500);
+INSERT INTO panier(date, solde) VALUES ('12/10/2021', 4000);
+INSERT INTO panier(date, solde) VALUES ('12/10/2021', 18500);
+INSERT INTO panier(numero, date, solde) VALUES (5, '12/10/2021');
+INSERT INTO panier(numero, date, solde) VALUES (6, '12/10/2021');
+INSERT INTO panier(numero, date, solde) VALUES (7, '12/10/2021');
+
+
+
+------------------caisse enregistreuse achat---------------------------------
+INSERT INTO achat(quantite, montant, code, numero) VALUES(2, 42000, 'PD01CE', 1)
+INSERT INTO achat(quantite, montant, code, numero) VALUES(5, 19500, 'PD02CE', 1)
+INSERT INTO achat(quantite, montant, code, numero) VALUES(3, 15000, 'PD03CE', 1)
+INSERT INTO achat(quantite, montant, code, numero) VALUES(1, 13500, 'PD04CE', 2)
+INSERT INTO achat(quantite, montant, code, numero) VALUES(3, 15000, 'PD05CE', 2)
+INSERT INTO achat(quantite, montant, code, numero) VALUES(1, 4000, 'PD06CE', 2)
+INSERT INTO achat(quantite, montant, code, numero) VALUES(2, 2000, 'PD07CE', 3)
+INSERT INTO achat(quantite, montant, code, numero) VALUES(1, 2000, 'PD08CE', 3)
+INSERT INTO achat(quantite, montant, code, numero) VALUES(2, 3600, 'PD09CE', 1)
+INSERT INTO achat(quantite, montant, code, numero) VALUES(1, 13500, 'PD04CE', 4)
+INSERT INTO achat(quantite, montant, code, numero) VALUES(3, 3000, 'PD05CE', 4)
+INSERT INTO achat(quantite, montant, code, numero) VALUES(1, 2000, 'PD06CE', 4)
+
+
+
+
+
 
 
 
 
 --------------------------panier vide-----------------------------------
 
-INSERT INTO panier(numero, date, solde) VALUES (5, '12/10/2021');
-INSERT INTO panier(numero, date, solde) VALUES (6, '12/10/2021');
-INSERT INTO panier(numero, date, solde) VALUES (7, '12/10/2021');
+
