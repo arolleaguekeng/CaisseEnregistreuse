@@ -55,6 +55,10 @@
       <Project>{C9D6ECB4-AB31-4B81-97AD-237F2DC90DBE}</Project>
       <Name>CaisseEnregistreuse.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\CaisseEnregistreuse.BO\CaisseEnregistreuse.BO.csproj">
+      <Project>{1028A8F9-6BA1-4611-9073-2B465379D27C}</Project>
+      <Name>CaisseEnregistreuse.BO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

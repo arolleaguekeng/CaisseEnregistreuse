@@ -11,7 +11,7 @@ go
 
 ALTER table achat
 ADD constraint fk_numero
-foreign key (numero) references produit (numero)
+foreign key (numero) references panier (numero)
 go
 
 

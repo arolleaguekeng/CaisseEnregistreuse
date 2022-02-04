@@ -1,4 +1,5 @@
 ﻿using CaisseEnregistreuse.BO;
+using CaisseEnregistreuse.DAL;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,10 +13,12 @@ namespace CaisseEnregistreuse.BLL
     {
         public string Commande;
         Panier panier;
+        CaissierDAO caissierDAO;
         public CaissierManager()
         {
-            panier = new Panier();
-            Commande = $"print {panier.Numero}.pdf";
+           
+            Commande = $"print {Panier.Numero}.pdf";
+            caissierDAO = new CaissierDAO();
         }
 
 
@@ -24,5 +27,12 @@ namespace CaisseEnregistreuse.BLL
         {
             Process.Start("cmd.exe", Commande);
         }
+
+        public Caissier getCaissier(Caissier caissier)
+        {
+            return caissierDAO.GetCaissier(caissier);
+        }
+
+       
     }
 }
