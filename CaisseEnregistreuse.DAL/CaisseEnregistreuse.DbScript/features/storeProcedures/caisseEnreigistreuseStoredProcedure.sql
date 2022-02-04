@@ -1,4 +1,4 @@
-CREATE PROCEDURE Sp_Caissier_Select
+CREATE PROCEDURE sp_caissier_select
 (
  @matricule NVARCHAR(11) = NULL,
  @nom NVARCHAR(30) = NULL 
@@ -14,7 +14,7 @@ go
 
 
 
-CREATE PROCEDURE Sp_Produit_Select
+CREATE PROCEDURE sp_produit_select
 (
  @code NVARCHAR(6) = NULL,
  @designation NVARCHAR(255) = NULL,
@@ -31,7 +31,7 @@ END
 go
 
 
-CREATE PROCEDURE Sp_Achat_Select
+CREATE PROCEDURE sp_achat_select
 (
     @id_achat int = NULL,
     @quantite int = NULL,
@@ -48,7 +48,7 @@ END
 go
 
 
-CREATE PROCEDURE Sp_Panier_Select
+CREATE PROCEDURE sp_panier_select
 (
     @numero int = NULL,
     @date Date = NULL,
@@ -64,7 +64,7 @@ BEGIN
 END
 go
 
-CREATE PROCEDURE Sp_Ticket_Select
+CREATE PROCEDURE sp_ticket_select
 (
     @id_ticket int = NULL,
     @remise float = NULL,
