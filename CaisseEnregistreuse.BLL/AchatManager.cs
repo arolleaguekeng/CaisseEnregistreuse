@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CaisseEnregistreuse.BO;
+using CaisseEnregistreuse.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
