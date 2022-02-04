@@ -15,10 +15,6 @@ namespace CaisseEnregistreuse.DAL
         {
             sql = new Sql("SqlServer");
         }
-        public void AddAchat(Achat achat, Panier panier)
-        {
-            panier.Achats.Add(achat);
-        }
 
         public Panier Add(Panier panier)
         {
