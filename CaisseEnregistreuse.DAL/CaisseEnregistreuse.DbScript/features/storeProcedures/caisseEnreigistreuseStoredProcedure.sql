@@ -1,3 +1,4 @@
+use CaisseEnreigistreuse;
 CREATE PROCEDURE Sp_Caissier_Select
 (
  @matricule NVARCHAR(11) = NULL,

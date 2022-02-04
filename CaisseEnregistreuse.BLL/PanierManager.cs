@@ -9,6 +9,7 @@ namespace CaisseEnregistreuse.BLL
     public class PanierManager
     {
         private PanierDAO panierDAO;
+        
 
         public PanierManager()
         {
@@ -28,6 +29,15 @@ namespace CaisseEnregistreuse.BLL
         public List<Panier> Find(Panier p)
         {
             return panierDAO.Find(p).ToList();
+        }
+        public double CalculSolde(Panier panier)
+        {
+            double solde = 0;
+            foreach(var achat in panier.Achats )
+            {
+                solde += achat.Montant;
+            }
+            return solde;
         }
     }
 }
