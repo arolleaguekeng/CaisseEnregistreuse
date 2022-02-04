@@ -15,7 +15,7 @@ namespace CaisseEnregistreuse.BO
 
         }
 
-        public Caissier(string matricule, string nom)
+        public Caissier(string matricule, string nom) 
         {
             Matricule = matricule;
             Nom = nom;
