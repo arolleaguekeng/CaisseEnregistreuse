@@ -35,11 +35,7 @@ namespace CaisseEnregistreuse.BLL
         }
         public void AfficherTiket(Panier panier)
         {
-            Console.WriteLine("+-----------------------------------------------------------+");
-            Console.WriteLine("Tiket");
-            Console.WriteLine($"|{reader["name"].ToString().PadRight(50, ' ')}"
-
-            Console.WriteLine("+-----------------------------------------------------------+");
+            
             
         }
     }
