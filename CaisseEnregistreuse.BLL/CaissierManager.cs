@@ -11,11 +11,9 @@ namespace CaisseEnregistreuse.BLL
     public class CaissierManager
     {
         public string Commande;
-        Panier panier;
         public CaissierManager()
         {
-            panier = new Panier();
-            Commande = $"print {panier.Numero}.pdf";
+            Commande = $"print {Panier.Numero}.pdf";
         }
 
 
