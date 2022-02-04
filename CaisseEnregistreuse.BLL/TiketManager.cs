@@ -23,7 +23,7 @@ namespace CaisseEnregistreuse.BLL
                tiket.NetAPayer = manager.CalculSolde(panier) - (manager.CalculSolde(panier) * remise) / 100; 
             }
             if(typeRemise.ToLower()=="n")
-            {
+            { 
                tiket.NetAPayer =  manager.CalculSolde(panier) - remise;
             }
             return panier.Solde - remise;
