@@ -44,7 +44,7 @@ namespace CaisseEnregistreuse.DAL
         }
 
         private IEnumerable<Sql.Parameter> GetParmeter(Achat achat)
-        {
+        { 
             return new Sql.Parameter[]
             {
                 new Sql.Parameter("code", System.Data.DbType.String, (object)achat._Produit.Code??DBNull.Value, System.Data.ParameterDirection.Output),
