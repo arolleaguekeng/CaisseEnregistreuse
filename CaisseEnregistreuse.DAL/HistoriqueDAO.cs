@@ -18,7 +18,7 @@ namespace CaisseEnregistreuse.DAL
 
         public IEnumerable<Historique> Get(Historique historique)
         {
-            return sql.Read<Historique>("sp_get_history", GetParmeter(historique), GetHistorique, true);
+            return sql.Read<Historique>("sp_get_history", null, GetHistorique, true);
         }
 
         private Historique GetHistorique(System.Data.Common.DbDataReader datareader)
@@ -29,6 +29,8 @@ namespace CaisseEnregistreuse.DAL
                 int.Parse(datareader["quantiteProduit"].ToString()),
                 double.Parse(datareader["prixAchatProduit"].ToString()),
                 double.Parse(datareader["prixVenteProduit"].ToString()),
+                double.Parse(datareader["montantAchat"].ToString()),
+                double.Parse(datareader["montantTotalAchat"].ToString()),
                 int.Parse(datareader["benefice"].ToString()),
                 DateTime.Parse(datareader["date"].ToString()))
             );
@@ -46,6 +48,8 @@ namespace CaisseEnregistreuse.DAL
                 new Sql.Parameter("quantiteProduit", System.Data.DbType.Int64, historique.QuantiteProduit == 0?DBNull.Value:(object)historique.QuantiteProduit ),
                 new Sql.Parameter("prixAchatProduit", System.Data.DbType.Double,historique.PrixAchatProduit == 0?DBNull.Value:(object)historique.PrixAchatProduit ),
                 new Sql.Parameter("prixVenteProduit", System.Data.DbType.Double,historique.PrixVenteProduit == 0?DBNull.Value:(object)historique.PrixVenteProduit ),
+                new Sql.Parameter("montantAchat", System.Data.DbType.Double,historique.MontantAchat == 0?DBNull.Value:(object)historique.PrixVenteProduit ),
+                new Sql.Parameter("montantTotalAchat", System.Data.DbType.Double,historique.MontantTotalAchat == 0?DBNull.Value:(object)historique.PrixVenteProduit ),
                 new Sql.Parameter("benefice", System.Data.DbType.Double,historique.Benefice == 0?DBNull.Value:(object)historique.Benefice),
                 new Sql.Parameter("date", System.Data.DbType.Date,historique.Date == null?DBNull.Value:(object)historique.Date  , System.Data.ParameterDirection.Output)
             };
