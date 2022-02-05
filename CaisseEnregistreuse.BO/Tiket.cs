@@ -26,5 +26,20 @@ namespace CaisseEnregistreuse.BO
             NetAPayer = netAPayer;
             _Caissier = caissier;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Tiket tiket &&
+                   EqualityComparer<Panier>.Default.Equals(_Panier, tiket._Panier) &&
+                   EqualityComparer<Caissier>.Default.Equals(_Caissier, tiket._Caissier);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -792801848;
+            hashCode = hashCode * -1521134295 + EqualityComparer<Panier>.Default.GetHashCode(_Panier);
+            hashCode = hashCode * -1521134295 + EqualityComparer<Caissier>.Default.GetHashCode(_Caissier);
+            return hashCode;
+        }
     }
 }

@@ -20,5 +20,16 @@ namespace CaisseEnregistreuse.BO
             Matricule = matricule;
             Nom = nom;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Caissier caissier &&
+                   Matricule == caissier.Matricule;
+        }
+
+        public override int GetHashCode()
+        {
+            return 797189699 + EqualityComparer<string>.Default.GetHashCode(Matricule);
+        }
     }
 }
