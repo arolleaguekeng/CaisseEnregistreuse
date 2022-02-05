@@ -27,9 +27,10 @@ namespace CaisseEnregistreuse.DAL
 
         private Caissier GetCaissier(DbDataReader datareader)
         {
- 
+            Console.WriteLine(datareader.GetValue(0));
             Caissier caissier = new Caissier(
-                "kjlml", "kmlkjmj"
+                datareader["matricule"].ToString()
+                , datareader["nom"].ToString()
                 );
             return caissier;
         }
