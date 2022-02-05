@@ -68,7 +68,7 @@ namespace CaisseEnregistreuse.console
                 //Remplissage du tableau des tailles max.
                 for (int i = 0; i < tableau.GetLength(1); i++)
                 {
-                    int tailleMax = tableau[0, i].Length;
+                    int tailleMax = tableau[0, i].Length; 
 
                     for (int j = 0; j < tableau.GetLength(0); j++)
                     {
