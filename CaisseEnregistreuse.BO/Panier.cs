@@ -23,11 +23,7 @@ namespace CaisseEnregistreuse.BO
             Solde = 0;
         }
 
-        public override bool Equals(object obj)
-        {
-            return obj is Panier panier &&
-                   Date == panier.Date;
-        }
+
 
         public override int GetHashCode()
         {

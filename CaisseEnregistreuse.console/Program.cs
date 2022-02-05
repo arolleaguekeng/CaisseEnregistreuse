@@ -1,5 +1,6 @@
 ﻿using CaisseEnregistreuse.BLL;
 using CaisseEnregistreuse.BO;
+using CaisseEnregistreuse.DAL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,43 +11,52 @@ namespace CaisseEnregistreuse.console
 {
     class Program
     {
-        private static ProduitManager pd = new ProduitManager();
+        private static ProduitDAO pd = new ProduitDAO();
         private static AchatManager ac = new AchatManager();
         private static CaissierManager cs = new CaissierManager();
         private static Historique_manager hm = new Historique_manager();
-       
+        private static Historique_manager hManager = new Historique_manager();
+
+
         public static Affichage affichage = new Affichage();
         static void Main(string[] args)
         {
-            List<Achat> achats = new List<Achat>();
-            List<Produit> produits1 = new List<Produit>();
-            produits1 = pd.GetAll(new Produit());
-            achats = ac.GetAll();
+            //Console.WriteLine(pd.Get(new Produit { Code = "PD01CE" }).Designation);
 
-            affichage.PrintEntete();
-            string[,] produitTab = new string[produits1.Count(),4];
-            for (int i = 0; i < produitTab.GetLength(0); i++)
+            foreach (var history in hManager.GetHistorique(DateTime.Parse("10/11/2022")))
             {
-                for (int j = 0; j < produitTab.GetLength(1); j++)
-                {
-                   
-                        produitTab[i, 0] = produits1[i].Code; 
-                    
-                        produitTab[i, 1] = produits1[i].Designation;
-                   
-                        produitTab[i, 2] = produits1[i].PrixAchat.ToString();
-                   
-                        produitTab[i, 3] = produits1[i].PrixAchat.ToString();
-                    break;
-                    
-                }
+                Console.WriteLine(history.Date+"\t\t\t"+ history.CodeProduit);
             }
 
-            foreach(var ac in achats)
-            {
-                Console.WriteLine(ac._Produit.PrixAchat);
-            }
-           
+            //List<Achat> achats = new List<Achat>();
+            //List<Produit> produits1 = new List<Produit>();
+            //produits1 = pd.GetAll(new Produit());
+            //achats = ac.GetAll();
+
+            //affichage.PrintEntete();
+            //string[,] produitTab = new string[produits1.Count(),4];
+            //for (int i = 0; i < produitTab.GetLength(0); i++)
+            //{
+            //    for (int j = 0; j < produitTab.GetLength(1); j++)
+            //    {
+
+            //            produitTab[i, 0] = produits1[i].Code; 
+
+            //            produitTab[i, 1] = produits1[i].Designation;
+
+            //            produitTab[i, 2] = produits1[i].PrixAchat.ToString();
+
+            //            produitTab[i, 3] = produits1[i].PrixAchat.ToString();
+            //        break;
+
+            //    }
+            //}
+
+            //foreach(var ac in achats)
+            //{
+            //    Console.WriteLine(ac._Produit.PrixAchat);
+            //}
+
 
 
             //foreach(var produit in produits1)
