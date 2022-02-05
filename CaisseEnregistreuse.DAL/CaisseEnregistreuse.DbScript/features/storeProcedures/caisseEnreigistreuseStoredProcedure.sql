@@ -164,6 +164,37 @@ go
 
 
 
+USE [caisseEnregistreuse]
+GO
+/****** Object:  StoredProcedure [dbo].[sp_get_history]    Script Date: 05/02/2022 08:37:05 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROCEDURE sp_get_history
+(
+	@codeProduit NVARCHAR = NULL ,
+	@quantiteProduit INT = NULL ,
+	@prixAchatProduit FLOAT= NULL ,
+	@prixVenteProduit FLOAT= NULL ,
+	@montantAchat FLOAT = NULL,
+	@montantTotalAchat FLOAT = NULL,
+	@benefice FLOAT = NULL ,
+	@date Date =  NULL OUTPUT
+)
+AS
+BEGIN
+	SELECT DISTINCT pd.code, SUM(a.quantite) as "Quantiée Vendue", pd.prixAchat ,
+	pd.prixVente, a.montant,SUM(pd.prixAchat) as "Montant achat", SUM(pd.prixVente)-SUM(pd.prixAchat) as "Bénéfice",p.date
+	FROM produit pd JOIN achat a on(a.code = pd.code)
+	JOIN  panier p on (a.numero = p.numero)
+	WHERE p.date = '12/10/2021' 
+	GROUP BY pd.code  , a.quantite,pd.prixAchat, pd.prixVente, a.montant,p.date
+END
+
+
+
 
 
 

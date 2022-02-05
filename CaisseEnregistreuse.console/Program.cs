@@ -16,7 +16,7 @@ namespace CaisseEnregistreuse.console
         static void Main(string[] args)
         {
             var p = pm.Get(new Caissier { Matricule = "EM201CE" });
-            historiques = hm.GetHistorique(new Historique { Date = DateTime.Parse("12/10/2021")});
+            historiques = hm.GetHistorique(new Historique());
             Console.WriteLine(p.Matricule);
             foreach(var a in historiques)
                 Console.WriteLine(a.PrixAchatProduit);
