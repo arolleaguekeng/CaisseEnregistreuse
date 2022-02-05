@@ -24,5 +24,20 @@ namespace CaisseEnregistreuse.BO
             PrixAchat = prixAchat;
             PrixVente = prixVente;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Produit produit &&
+                   Code == produit.Code &&
+                   Designation == produit.Designation;
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = 443220136;
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Code);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(Designation);
+            return hashCode;
+        }
     }
 }
