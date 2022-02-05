@@ -22,7 +22,7 @@ namespace CaisseEnregistreuse.BLL
             double montantTotalAchat = 0;
             List<Historique> historiques = new List<Historique>();
             var panier = manager.Get(new Panier { Date = date});
-            Historique historique = new Historique();
+            Historique historique = new Historique(); 
             historique.Date = panier.Date;
             foreach (var achat in panier.Achats)
             {
