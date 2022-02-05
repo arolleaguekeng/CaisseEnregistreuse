@@ -25,6 +25,7 @@ namespace CaisseEnregistreuse.DAL
                 (
                 "sp_caissier_select", GetParameter(caissier), GetCaissier, true
                 )?.FirstOrDefault();
+
            
         }
 
