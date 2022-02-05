@@ -21,6 +21,11 @@ namespace CaisseEnregistreuse.DAL
             return achat;
         }
 
+        public IEnumerable<Achat> GetAll()
+        {
+            return sql.Read<Achat>("sp_achat_select", null, GetAchat, true);
+        }
+
         public Achat Get(Achat achat)
         {
             return sql.Read<Achat>("sp_achat_select", GetParmeter(achat), GetAchat, true)?.FirstOrDefault();
@@ -34,7 +39,7 @@ namespace CaisseEnregistreuse.DAL
             (
                 produit.Get(new Produit { Code = datareader["code"].ToString()}), 
                 int.Parse(datareader["quantite"].ToString()),
-                int.Parse(datareader["numeroPanier"].ToString())
+                int.Parse(datareader["numero"].ToString())
             ) ;
         }
 

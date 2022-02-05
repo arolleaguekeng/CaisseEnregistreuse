@@ -49,7 +49,8 @@ namespace CaisseEnregistreuse.console
                 Console.WriteLine("*");
             }
             Console.WriteLine(new string('*', 133));
-            Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
+            
         }
 
     }
