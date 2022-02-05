@@ -11,13 +11,16 @@ namespace CaisseEnregistreuse.console
     class Program
     {
         private static CaissierManager pm = new CaissierManager();
+        private static ProduitManager pd = new ProduitManager();
+        private static Affichage affichage = new Affichage();
         static void Main(string[] args)
         {
-            var p = pm.Get(new Caissier { Matricule = "EM201CE" });
+            affichage.PrintEntete();
 
-            Console.WriteLine(p.Matricule);
+            
+            
 
-            Console.ReadKey();
+            
         }
         public static void AfficherTableau(string[,] tableau)
         {
