@@ -23,6 +23,11 @@ namespace CaisseEnregistreuse.DAL
                             true)?.FirstOrDefault();
         }
 
+        public IEnumerable<Produit> GetAll(Produit p)
+        {
+            return sql.Read<Produit>("sp_produit_select", GetParameter(p), GetProduit, true);
+        }
+
         private Produit GetProduit(System.Data.Common.DbDataReader dataReader)
         {
             return new Produit

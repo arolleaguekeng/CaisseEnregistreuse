@@ -25,6 +25,11 @@ namespace CaisseEnregistreuse.BLL
             return achatDAO.Get(Achat);
         }
 
+        public List<Achat> GetAll()
+        {
+            return achatDAO.GetAll().ToList();
+        }
+
         public List<Achat> Find(Achat p)
         {
             return achatDAO.Find(p).ToList();

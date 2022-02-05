@@ -21,6 +21,11 @@ namespace CaisseEnregistreuse.DAL
             return achat;
         }
 
+        public IEnumerable<Achat> GetAll()
+        {
+            return sql.Read<Achat>("sp_achat_select", null, GetAchat, true);
+        }
+
         public Achat Get(Achat achat)
         {
             return sql.Read<Achat>("sp_achat_select", GetParmeter(achat), GetAchat, true)?.FirstOrDefault();

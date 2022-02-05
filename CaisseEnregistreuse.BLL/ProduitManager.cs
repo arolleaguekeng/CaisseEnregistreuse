@@ -21,6 +21,11 @@ namespace CaisseEnregistreuse.BLL
             return produitDAO.Get(produit);
         }
 
-       
+        public List<Produit> GetAll(Produit produit)
+        {
+            return (List<Produit>)produitDAO.GetAll(produit);
+        }
+
+
     }
 }

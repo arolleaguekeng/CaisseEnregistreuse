@@ -10,20 +10,52 @@ namespace CaisseEnregistreuse.console
 {
     class Program
     {
-        private static CaissierManager pm = new CaissierManager();
+        private static ProduitManager pd = new ProduitManager();
+        private static AchatManager ac = new AchatManager();
+        private static CaissierManager cs = new CaissierManager();
         private static Historique_manager hm = new Historique_manager();
-        private static PanierManager pmm = new PanierManager();
-        public static List<Historique> historiques = new List<Historique>();
+       
+        public static Affichage affichage = new Affichage();
         static void Main(string[] args)
         {
+            List<Achat> achats = new List<Achat>();
+            List<Produit> produits1 = new List<Produit>();
+            produits1 = pd.GetAll(new Produit());
+            achats = ac.GetAll();
 
-            historiques = hm.GetHistorique(DateTime.Parse("20-10-2021"));
-            foreach(var hist in historiques)
+            affichage.PrintEntete();
+            string[,] produitTab = new string[produits1.Count(),4];
+            for (int i = 0; i < produitTab.GetLength(0); i++)
             {
-                Console.WriteLine(hist.Benefice);
+                for (int j = 0; j < produitTab.GetLength(1); j++)
+                {
+                   
+                        produitTab[i, 0] = produits1[i].Code; 
+                    
+                        produitTab[i, 1] = produits1[i].Designation;
+                   
+                        produitTab[i, 2] = produits1[i].PrixAchat.ToString();
+                   
+                        produitTab[i, 3] = produits1[i].PrixAchat.ToString();
+                    break;
+                    
+                }
             }
 
+            foreach(var ac in achats)
+            {
+                Console.WriteLine(ac._Produit.PrixAchat);
+            }
+           
+
+
+            //foreach(var produit in produits1)
+            //{
+            //    Console.WriteLine(produit.Code + " " + produit.Designation + " " + produit.PrixAchat + " " + produit.PrixVente);
+            //}
+            //AfficherTableau(produitTab);
             Console.ReadKey();
+            
 
         }
         public static void AfficherTableau(string[,] tableau)
@@ -36,7 +68,7 @@ namespace CaisseEnregistreuse.console
                 //Remplissage du tableau des tailles max.
                 for (int i = 0; i < tableau.GetLength(1); i++)
                 {
-                    int tailleMax = tableau[0, i].Length;
+                    int tailleMax = tableau[0, i].Length; 
 
                     for (int j = 0; j < tableau.GetLength(0); j++)
                     {
@@ -45,7 +77,7 @@ namespace CaisseEnregistreuse.console
                             tailleMax = tableau[j, i].Length;
                         }
                     }
-                    colTailMax[i] = tailleMax;
+                    colTailMax[i] = tailleMax*2;
                 }
 
                 //Affichage proprement dit.
@@ -61,7 +93,7 @@ namespace CaisseEnregistreuse.console
                     {
                         if (etapeAffichage == 3 || etapeAffichage == 1)
                         {
-                            Console.ForegroundColor = (i == 0) ? ConsoleColor.White : ConsoleColor.Black;
+                            
                             Console.Write("+");
                             int j = 0;
                             for (j = 0; j < colTailMax.Length; j++)
@@ -82,7 +114,7 @@ namespace CaisseEnregistreuse.console
                         }
                         if (etapeAffichage == 2)
                         {
-                            Console.ForegroundColor = (i == 0) ? ConsoleColor.White : ConsoleColor.Black;
+                           
                             Console.Write('|');
                             for (int j = 0; j < tableau.GetLength(1); j++)
                             {
