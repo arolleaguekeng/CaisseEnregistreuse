@@ -15,9 +15,9 @@ namespace CaisseEnregistreuse.BLL
         {
             historiqueDAO = new HistoriqueDAO();
         }
-        public List<Historique> GetHistorique()
+        public List<Historique> GetHistorique(Historique historique)
         {
-            return historiqueDAO.Get().ToList();
+            return historiqueDAO.Get(historique).ToList();
         }
     }
 }
