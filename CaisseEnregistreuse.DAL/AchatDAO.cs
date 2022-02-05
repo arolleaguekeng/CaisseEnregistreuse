@@ -32,7 +32,7 @@ namespace CaisseEnregistreuse.DAL
             var produit = new ProduitDAO();
             return new Achat
             (
-                produit.Get(new Produit { Code = datareader["code"].ToString()}),
+                produit.Get(new Produit { Code = datareader["code"].ToString()}), 
                 int.Parse(datareader["quantite"].ToString()),
                 int.Parse(datareader["numeroPanier"].ToString())
             ) ;
