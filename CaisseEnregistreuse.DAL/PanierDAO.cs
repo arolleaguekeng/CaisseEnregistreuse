@@ -23,8 +23,7 @@ namespace CaisseEnregistreuse.DAL
         }
         public Panier Get(Panier panier)
         {
-            var datareader = sql.Read("sp_panier_select", GetParameter(panier), true);
-            return GetPanier(datareader);
+            return sql.Read<Panier>("sp_panier_select", GetParameter(panier), GetPanier, true)?.FirstOrDefault();
         }
 
         private Panier GetPanier(System.Data.Common.DbDataReader datareader)

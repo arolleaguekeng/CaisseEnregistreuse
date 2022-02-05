@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Achat.cs" />
     <Compile Include="Caissier.cs" />
+    <Compile Include="Historique.cs" />
     <Compile Include="Panier.cs" />
     <Compile Include="Produit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

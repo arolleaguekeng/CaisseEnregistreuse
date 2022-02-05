@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="AchatManager.cs" />
     <Compile Include="CaissierManager.cs" />
+    <Compile Include="Historique_manager.cs" />
     <Compile Include="PanierManager.cs" />
     <Compile Include="ProduitManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
