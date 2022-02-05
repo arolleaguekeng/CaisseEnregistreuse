@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="AchatDAO.cs" />
     <Compile Include="CaissierDAO.cs" />
-    <Compile Include="HistoriqueDAO.cs" />
     <Compile Include="PanierDAO.cs" />
     <Compile Include="ProduitDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

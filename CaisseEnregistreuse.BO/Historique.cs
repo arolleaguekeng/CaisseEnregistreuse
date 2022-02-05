@@ -34,5 +34,19 @@ namespace CaisseEnregistreuse.BO
             MontantAchat = montantAchat;
             MontantTotalAchat = montantTotalAchat;
         }
+
+        public Historique(string code)
+        {
+            CodeProduit = code;
+        }
+
+        public Historique(string codeProduit, int quantiteProduit, double prixAchatProduit, double prixVenteProduit, double montant, DateTime date) : this(codeProduit)
+        {
+            QuantiteProduit = quantiteProduit;
+            PrixAchatProduit = prixAchatProduit;
+            PrixVenteProduit = prixVenteProduit;
+            Date = date;
+            MontantAchat = montant;
+        }
     }
 }

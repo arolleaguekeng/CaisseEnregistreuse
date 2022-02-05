@@ -25,6 +25,10 @@ namespace CaisseEnregistreuse.DAL
         {
             return sql.Read<Panier>("sp_panier_select", GetParameter(panier), GetPanier, true)?.FirstOrDefault();
         }
+        public IEnumerable<Panier> GetAll()
+        {
+            return sql.Read<Panier>("sp_panier_select", null, GetPanier, true);
+        }
 
         private Panier GetPanier(System.Data.Common.DbDataReader datareader)
         {
@@ -35,6 +39,10 @@ namespace CaisseEnregistreuse.DAL
                 );
             return Panier;
         }
+
+
+
+
 
         public IEnumerable<Panier> Find(Panier p)
         {

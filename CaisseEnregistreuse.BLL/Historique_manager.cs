@@ -10,14 +10,39 @@ namespace CaisseEnregistreuse.BLL
 {
     public class Historique_manager
     {
-        private HistoriqueDAO historiqueDAO;
+        private PanierManager manager;
+        private AchatManager achatManager;
         public Historique_manager()
         {
-            historiqueDAO = new HistoriqueDAO();
+            manager = new PanierManager();
+            achatManager = new AchatManager();
         }
-        public List<Historique> GetHistorique(Historique historique)
+        public List<Historique> GetHistorique(DateTime date)
         {
-            return historiqueDAO.Get(historique).ToList();
+            double montantTotalAchat = 0;
+            List<Historique> historiques = new List<Historique>();
+            var panier = manager.Get(new Panier { Date = date});
+            Historique historique = new Historique();
+            historique.Date = panier.Date;
+            foreach (var achat in panier.Achats)
+            {
+                historique.CodeProduit = achat._Produit.Code;
+                historique.QuantiteProduit = achat.Quantite;
+                historique.PrixAchatProduit = achat._Produit.PrixAchat;
+                historique.PrixVenteProduit = achat._Produit.PrixVente;
+                historique.Benefice = achat._Produit.PrixVente - achat._Produit.PrixAchat;
+                historique.MontantAchat = achat.Montant;
+                foreach (var produit in panier.Achats)
+                {
+                    montantTotalAchat += produit.Montant;
+                }
+                historique.MontantTotalAchat = montantTotalAchat;
+
+                historiques.Add(historique);
+
+            }
+            historique.Date = panier.Date;
+            return historiques;
         }
     }
 }

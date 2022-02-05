@@ -29,6 +29,15 @@ namespace CaisseEnregistreuse.BLL
         {
             return achatDAO.Find(p).ToList();
         }
+        public List<Achat> GetAchatPanier(Panier panier)
+        {
+            List<Achat> achatsPanier = new List<Achat>();
+            foreach(var achat in achatsPanier)
+            {
+                panier.Achats.Add(achat);
+            }
+            return achatsPanier;
+        }
 
     }
 }

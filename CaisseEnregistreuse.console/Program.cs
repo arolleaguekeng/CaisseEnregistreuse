@@ -12,14 +12,17 @@ namespace CaisseEnregistreuse.console
     {
         private static CaissierManager pm = new CaissierManager();
         private static Historique_manager hm = new Historique_manager();
+        private static PanierManager pmm = new PanierManager();
         public static List<Historique> historiques = new List<Historique>();
         static void Main(string[] args)
         {
-            var p = pm.Get(new Caissier { Matricule = "EM201CE" });
-            historiques = hm.GetHistorique(new Historique());
-            Console.WriteLine(p.Matricule);
-            foreach(var a in historiques)
-                Console.WriteLine(a.PrixAchatProduit);
+
+            historiques = hm.GetHistorique(DateTime.Parse("20-10-2021"));
+            foreach(var hist in historiques)
+            {
+                Console.WriteLine(hist.Benefice);
+            }
+
             Console.ReadKey();
 
         }
