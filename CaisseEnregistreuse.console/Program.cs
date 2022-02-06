@@ -23,8 +23,11 @@ namespace CaisseEnregistreuse.console
         public static Affichage affichage = new Affichage();
         static void Main(string[] args)
         {
-            hm.AfficherHistorique(hm.GetHistorique(DateTime.Parse("10/12/2021")));
-            tm.AfficherTiket(pm.Get(new Panier()));
+            hm.AfficherHistorique( "2021-12-10");
+
+            //tm.AfficherTiket(pm.Get(new Panier { Numero = 3}));
+            //var p = pm.Get(new Panier { Numero = 1 });
+            //Console.WriteLine(p.Achats.Distinct().ToList().Count); 
             //List<Achat> achats = new List<Achat>();
             //List<Produit> produits1 = new List<Produit>();
             //produits1 = pd.GetAll(new Produit());

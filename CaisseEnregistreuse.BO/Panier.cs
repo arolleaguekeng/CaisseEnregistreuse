@@ -29,5 +29,12 @@ namespace CaisseEnregistreuse.BO
         {
             return 884517729 + Date.GetHashCode();
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Panier panier &&
+                   Numero == panier.Numero &&
+                   Date == panier.Date;
+        }
     }
 }

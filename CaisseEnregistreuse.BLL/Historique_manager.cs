@@ -12,45 +12,20 @@ namespace CaisseEnregistreuse.BLL
     {
         private PanierManager manager;
         private AchatManager achatManager;
+        private HistoriqueDAO historiqueDAO;
         public Historique_manager()
         {
             manager = new PanierManager();
             achatManager = new AchatManager();
+            historiqueDAO = new HistoriqueDAO();
         }
-        public List<Historique> GetHistorique(DateTime date)
+        public List<Historique> GetHistorique(Historique historique, string date)
         {
-            double montantTotalAchat = 0;
-            List<Historique> historiques = new List<Historique>();
-            var paniers = manager.GetAll();
-            Historique historique = new Historique();
-            //foreach (var panier in paniers)
-            //{
-                foreach (var achat in paniers[1].Achats)
-                {
-                    historique.Date = paniers[0].Date;
-                    historique.CodeProduit = achat._Produit.Code;
-                    historique.QuantiteProduit = achat.Quantite;
-                    historique.PrixAchatProduit = achat._Produit.PrixAchat;
-                    historique.PrixVenteProduit = achat._Produit.PrixVente;
-                    historique.Benefice = achat._Produit.PrixVente - achat._Produit.PrixAchat;
-                    historique.MontantAchat = achat.Montant;
-                    foreach (var produit in paniers[0].Achats)
-                    {
-                        montantTotalAchat += produit.Montant;
-                    }
-                    historique.MontantTotalAchat = montantTotalAchat;
-
-                    historiques.Add(historique);
-
-                }
-                historique.Date = paniers[0].Date;
-            //}
-
-            return historiques;
+            return historiqueDAO.Get(historique,date).ToList();
         }
 
 
-        public void AfficherHistorique(List<Historique> historiques)
+        public void AfficherHistorique(string date)
         {
             int tablesize = 139;
             int leftpad = 6;
@@ -70,7 +45,7 @@ namespace CaisseEnregistreuse.BLL
 
             Console.WriteLine("+".PadRight(tablesize, '-') + "+");
             Console.ForegroundColor = ConsoleColor.White;
-            foreach (var history in GetHistorique(DateTime.Parse("02/10/2022")))
+            foreach (var history in GetHistorique(new Historique { Date = date },date))
             {
                 Console.WriteLine(" ".PadRight(leftpad, ' ') + history.Date.ToString().PadRight(25, ' ') +
                                   "|".PadRight(leftpad, ' ') + history.CodeProduit.PadRight(rightpad, ' ') +

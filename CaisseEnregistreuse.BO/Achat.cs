@@ -13,7 +13,7 @@ namespace CaisseEnregistreuse.BO
 
         public Achat()
         {
-
+            _Produit = new Produit();
         }
 
         public Achat(Produit produit, int quantite)
