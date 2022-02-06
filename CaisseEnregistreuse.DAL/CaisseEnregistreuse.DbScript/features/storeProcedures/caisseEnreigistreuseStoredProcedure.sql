@@ -113,21 +113,22 @@ CREATE PROCEDURE sp_panier_insert
 (
  @numero NVARCHAR(6) = NULL,
  @date Date = NULL,
- @solde float = NULL
+ @solde float = NULL,
+ @remise float = NULL
 
 )
 AS
 BEGIN
    INSERT INTO panier
     (
-      numero,
       date,
-      solde
+      solde,
+      numero
     )
     VALUES(
-      @numero,
       @date,
-      @solde
+      @solde,
+      numero
      
     )
 END

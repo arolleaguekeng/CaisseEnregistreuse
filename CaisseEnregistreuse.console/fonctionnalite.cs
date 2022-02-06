@@ -14,8 +14,6 @@ namespace CaisseEnregistreuse.console
         ProduitManager produitManager;
         AchatManager achatManager;
         Affichage Affichage;
-        public static Panier panier;
-        private static TiketManager tk;
         public fonctionnalite()
         {
             produitManager = new ProduitManager();
@@ -23,26 +21,25 @@ namespace CaisseEnregistreuse.console
             achatManager = new AchatManager();
             achatManager = new AchatManager();
             Affichage = new Affichage();
-            tk = new TiketManager();
-            
         }
 
-
+        public static int PanierCourant;
         public void Enreigistre()
         {
-            //Affichage.PrintEntete();
+           
             string code = "";
             int quantite = 0;
             double Montant = 0;
             bool continuer = true;
             Panier panier = new Panier();
             string choix = String.Empty;
-            List<Achat> achats = new List<Achat>(); ; 
-
+            List<Achat> achats = new List<Achat>();
+            float Remiser;
+           
             while (continuer)
             {
                 Console.Clear();
-               
+                Affichage.PrintEntete();
                 //var numPanier = panierManager.Add(new Panier(DateTime.Now));
                 Console.WriteLine("saisissez le code du produit ");
                 code = Console.ReadLine();
@@ -74,7 +71,7 @@ namespace CaisseEnregistreuse.console
                     
                 }
 
-                Console.WriteLine("vous les vous continuer les ahats ? (appuyer sur O ou N)");
+                Console.WriteLine("voulez vous continuer les ahats ? (appuyer sur O ou N)");
                 choix = Console.ReadLine();
                 if (choix == "O" || choix == "o")
                 {
@@ -87,46 +84,22 @@ namespace CaisseEnregistreuse.console
                     {
                         Montant += list.Montant;
                     }
-
+                    
                 }
 
             }
-            if(achats.Count > 0)
+           
+            if (achats.Count() >= 1)
             {
                 Panier numPanier = panierManager.Add(new Panier(DateTime.Now, null, Montant));
-                panier = numPanier;
                 for (int i = 0; i < achats.Count(); i++)
                 {
                     achats[i].Numero = numPanier.Numero;
+                    PanierCourant = numPanier.Numero;
                     achatManager.Add(achats[i]);
-
                 }
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("+".PadRight(100, '-') + "+");
-                string column = "".PadRight(50, ' ') + "Tiket".PadRight(50, ' ') + "|";
-                Console.WriteLine(column);
-                Console.WriteLine("+".PadRight(100, '-') + "+");
-                Console.ForegroundColor = ConsoleColor.White;
-                string[,] produits = new string[achats.Count,4];
-                
-                for (int i = 0; i < achats.Count; i++)
-                {
-                    for (int j = 0; i < 4; j++)
-                    {
-                        produits[i, 0] = achats[i]._Produit.Code.ToString();
-                        produits[i, 1] = achats[i]._Produit.Designation.ToString();
-                        produits[i, 2] = achats[i]._Produit.PrixVente.ToString();
-                        produits[i, 3] = achats[i].Montant.ToString();
-                        break;
-                    }
-                  
-
-                }
-                Program.AfficherTableau(produits);
             }
-
-           
-            Console.WriteLine("Quitter l'enregistrement de l'achat");
+            Console.WriteLine("Quitter l'enregistrement des achats");
             Console.ReadKey();
             Console.Clear();
             Affichage.PrintEntete();
