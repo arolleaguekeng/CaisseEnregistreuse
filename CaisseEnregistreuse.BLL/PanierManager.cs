@@ -39,5 +39,9 @@ namespace CaisseEnregistreuse.BLL
             }
             return solde;
         }
+        public List<Panier> GetAll()
+        {
+            return panierDAO.GetAll().ToList();
+        }
     }
 }
