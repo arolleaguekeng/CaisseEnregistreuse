@@ -14,6 +14,8 @@ namespace CaisseEnregistreuse.console
         ProduitManager produitManager;
         AchatManager achatManager;
         Affichage Affichage;
+        public static Panier panier;
+        private static TiketManager tk;
         public fonctionnalite()
         {
             produitManager = new ProduitManager();
@@ -21,6 +23,8 @@ namespace CaisseEnregistreuse.console
             achatManager = new AchatManager();
             achatManager = new AchatManager();
             Affichage = new Affichage();
+            tk = new TiketManager();
+            
         }
 
 
@@ -83,21 +87,50 @@ namespace CaisseEnregistreuse.console
                     {
                         Montant += list.Montant;
                     }
-                    Panier numPanier = panierManager.Add(new Panier(DateTime.Now, null, Montant));
-                    for(int i = 0; i<achats.Count(); i++)
-                    {
-                        achats[i].Numero = numPanier.Numero;
-                        achatManager.Add(achats[i]);
-                    }
-                    
-                    Console.WriteLine("Quitter l'enregistrement de l'achat");
-                    Console.ReadKey();
-                    Console.Clear();
-                    Affichage.PrintEntete();
-                    Affichage.printMenu();
+
                 }
 
             }
+            if(achats.Count > 0)
+            {
+                Panier numPanier = panierManager.Add(new Panier(DateTime.Now, null, Montant));
+                panier = numPanier;
+                for (int i = 0; i < achats.Count(); i++)
+                {
+                    achats[i].Numero = numPanier.Numero;
+                    achatManager.Add(achats[i]);
+
+                }
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("+".PadRight(100, '-') + "+");
+                string column = "".PadRight(50, ' ') + "Tiket".PadRight(50, ' ') + "|";
+                Console.WriteLine(column);
+                Console.WriteLine("+".PadRight(100, '-') + "+");
+                Console.ForegroundColor = ConsoleColor.White;
+                string[,] produits = new string[achats.Count,4];
+                
+                for (int i = 0; i < achats.Count; i++)
+                {
+                    for (int j = 0; i < 4; j++)
+                    {
+                        produits[i, 0] = achats[i]._Produit.Code.ToString();
+                        produits[i, 1] = achats[i]._Produit.Designation.ToString();
+                        produits[i, 2] = achats[i]._Produit.PrixVente.ToString();
+                        produits[i, 3] = achats[i].Montant.ToString();
+                        break;
+                    }
+                  
+
+                }
+                Program.AfficherTableau(produits);
+            }
+
+           
+            Console.WriteLine("Quitter l'enregistrement de l'achat");
+            Console.ReadKey();
+            Console.Clear();
+            Affichage.PrintEntete();
+            Affichage.printMenu();
         }
     }
 }

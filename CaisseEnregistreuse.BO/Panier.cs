@@ -19,6 +19,7 @@ namespace CaisseEnregistreuse.BO
             Date = date;
             Achats = achats;
             Solde = 0;
+            Achats = new List<Achat>();
         }
 
         public Panier(DateTime date, List<Achat> achats, double solde)
@@ -27,6 +28,7 @@ namespace CaisseEnregistreuse.BO
             Date = date;
             Achats = achats;
             Solde = solde;
+            Achats = new List<Achat>();
         }
 
 

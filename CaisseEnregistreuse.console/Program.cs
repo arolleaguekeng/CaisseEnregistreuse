@@ -17,8 +17,12 @@ namespace CaisseEnregistreuse.console
         private static Historique_manager hm = new Historique_manager();
         public static fonctionnalite fn = new fonctionnalite();
         public static Affichage affichage = new Affichage();
+
         static void Main(string[] args)
         {
+            Console.BufferHeight = 300;
+            var a = Console.LargestWindowWidth;
+            Console.WriteLine(a);
             List<Panier> paniers = new List<Panier>();
             List<Achat> achats = new List<Achat>();
            
@@ -33,11 +37,15 @@ namespace CaisseEnregistreuse.console
             if (choix == "1")
             {
                 fn.Enreigistre();
+                
+
+
 
             }
             else if (choix == "2")
             {
-
+                Console.Clear();
+                hm.AfficherHistorique("2021-12-10");
             }
             else
             {
@@ -80,6 +88,7 @@ namespace CaisseEnregistreuse.console
 
                     while (etapeAffichage > 0)
                     {
+                       
                         if (etapeAffichage == 3 || etapeAffichage == 1)
                         {
                             
@@ -109,7 +118,14 @@ namespace CaisseEnregistreuse.console
                             {
                                 while (tableau[i, j].Length < colTailMax[j])
                                 {
-                                    tableau[i, j] += " ";
+                                    if(double.TryParse(tableau[i, j], out _))
+                                    {
+                                        tableau[i, j] = tableau[i, j].PadLeft(colTailMax[j]);
+                                    }
+                                    else
+                                    {
+                                        tableau[i, j] = tableau[i, j].PadRight(colTailMax[j]);
+                                    }
                                 }
                                 Console.Write((j == colTailMax.Length - 1) ? tableau[i, j] + "|\n" : tableau[i, j] + "|");
                             }
