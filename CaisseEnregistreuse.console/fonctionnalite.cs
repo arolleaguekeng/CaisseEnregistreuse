@@ -45,7 +45,7 @@ namespace CaisseEnregistreuse.console
                 var produit = produitManager.Get(new Produit { Code = code });
                
                 if(produit != null)
-                {
+                { 
                     Console.WriteLine($"\n\ndesignation du produit : {produit.Designation}\n\nprix de vente du produit : {produit.PrixVente}");
                    
                     do
