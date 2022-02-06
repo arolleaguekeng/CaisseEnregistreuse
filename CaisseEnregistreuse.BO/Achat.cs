@@ -21,7 +21,7 @@ namespace CaisseEnregistreuse.BO
             _Produit = produit;
             Quantite = quantite;
             Montant = quantite * produit.PrixAchat;
-            NumeroPanier = Panier.Numero;
+            //NumeroPanier = Panier.Numero;
         }
         public Achat(Produit produit, int quantite, int numeroPanier):this(produit, quantite)
         {

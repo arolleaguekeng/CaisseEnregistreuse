@@ -35,15 +35,16 @@ namespace CaisseEnregistreuse.BLL
         }
         public void AfficherTiket(Panier panier)
         {
-            Console.WriteLine("+".PadRight(200, '-') + "+");
+            Console.WriteLine("+".PadRight(100, '-') + "+");
             string column = "".PadRight(100, ' ') + "Tiket".PadRight(100, ' ') + "|";
             Console.WriteLine(column);
             Console.WriteLine("+".PadRight(100, '-') + "+");
-            foreach(var achat in panier.Achats)
+            foreach (var achat in panier.Achats)
             {
-                Console.WriteLine("|".PadRight(200, '-') + "|");
-                Console.WriteLine("|".PadRight(10, ' ') + achat._Produit.Code + " ".PadRight(10, ' ') + achat._Produit.PrixVente + achat.Quantite);
+                Console.WriteLine("|".PadRight(100, '-') + "|");
+                Console.WriteLine("|".PadRight(10, ' ') + achat._Produit.Code + " ".PadRight(10, ' ') + achat._Produit.PrixVente);
             }
+
 
         }
     }

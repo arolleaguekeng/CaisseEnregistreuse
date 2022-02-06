@@ -18,7 +18,9 @@ namespace CaisseEnregistreuse.DAL
 
         public Panier Add(Panier panier)
         {
-            var output = sql.Execute(" ", GetParameter(panier), true);
+            Dictionary<string, string> outPuts = new Dictionary<string, string>();
+            outPuts.Add("numero", sql.Execute(" ", GetParameter(panier), true).ToString());
+            panier.Numero = int.Parse(outPuts["numero"]);
             return panier;
         }
         public Panier Get(Panier panier)
@@ -63,7 +65,7 @@ namespace CaisseEnregistreuse.DAL
         {
             return new Sql.Parameter[]
             {
-                new Sql.Parameter("numero", System.Data.DbType.Int64, Panier.Numero == 0? DBNull.Value:(object)Panier.Numero, System.Data.ParameterDirection.Output),
+                new Sql.Parameter("numero", System.Data.DbType.Int64, panier.Numero == 0? DBNull.Value:(object)panier.Numero, System.Data.ParameterDirection.Output),
                 new Sql.Parameter("date", System.Data.DbType.DateTime, panier.Date == DateTime.MinValue? DBNull.Value:(object)panier.Date),
                 new Sql.Parameter("solde", System.Data.DbType.Double, panier.Solde == 0? DBNull.Value:(object)panier.Solde)
             };

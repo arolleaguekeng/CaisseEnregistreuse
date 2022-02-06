@@ -18,7 +18,7 @@ namespace CaisseEnregistreuse.BLL
         {
             caissierDAO = new CaissierDAO();
             panier = new Panier();
-            Commande = $"print {Panier.Numero}.pdf";
+            Commande = $"print {panier.Numero}.pdf";
         }
 
 

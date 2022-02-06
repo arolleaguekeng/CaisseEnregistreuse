@@ -16,12 +16,15 @@ namespace CaisseEnregistreuse.console
         private static CaissierManager cs = new CaissierManager();
         private static Historique_manager hm = new Historique_manager();
         private static Historique_manager hManager = new Historique_manager();
+        private static TiketManager tm = new TiketManager();
+        private static PanierManager pm = new PanierManager();
 
 
         public static Affichage affichage = new Affichage();
         static void Main(string[] args)
         {
             hm.AfficherHistorique(hm.GetHistorique(DateTime.Parse("10/12/2021")));
+            tm.AfficherTiket(pm.Get(new Panier()));
             //List<Achat> achats = new List<Achat>();
             //List<Produit> produits1 = new List<Produit>();
             //produits1 = pd.GetAll(new Produit());
