@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CaisseEnregistreuse.BLL;
+using CaisseEnregistreuse.BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +10,15 @@ namespace CaisseEnregistreuse.console
 {
     public class Affichage
     {
-
+        public static double Compteur = 0;
+        List<Panier> paniers;
+        PanierManager panierManager;
         public Affichage()
         {
-
+            paniers = new List<Panier>();
+            panierManager = new PanierManager();
+           
+            
         }
 
         public void PrintEntete()
@@ -49,6 +56,7 @@ namespace CaisseEnregistreuse.console
                 Console.WriteLine("*");
             }
             Console.WriteLine(new string('*', 133));
+            Console.WriteLine("\n\n");
             Console.ForegroundColor = ConsoleColor.White;
             
         }
@@ -57,6 +65,12 @@ namespace CaisseEnregistreuse.console
 
         public void printMenu()
         {
+            paniers = panierManager.Find(new Panier { Date = DateTime.Now });
+            foreach (var p in paniers)
+            {
+                Compteur += p.Solde;
+            }
+
             Console.Write("\n\n");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("\t\t");
@@ -119,7 +133,7 @@ namespace CaisseEnregistreuse.console
                     }
                     else if(j == 48 && i == 8)
                     {
-                        Console.Write("10000\tFCFA");
+                        Console.Write($"{Compteur}\tFCFA");
                         j = 59;
                     }
                     else

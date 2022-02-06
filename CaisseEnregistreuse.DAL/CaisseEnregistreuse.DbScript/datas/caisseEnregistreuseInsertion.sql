@@ -48,6 +48,7 @@ INSERT INTO panier(date, solde) VALUES ('12/10/2021', 4000);
 INSERT INTO panier(date, solde) VALUES ('12/10/2021', 18500);
 
 
+
 INSERT INTO panier(date, solde) VALUES ('12/10/2021');
 INSERT INTO panier(date, solde) VALUES ('12/10/2021');
 INSERT INTO panier(date, solde) VALUES ('12/10/2021');

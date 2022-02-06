@@ -37,7 +37,11 @@ namespace CaisseEnregistreuse.console
             }
             else if (choix == "2")
             {
-
+                Console.Clear();
+                affichage.PrintEntete();
+                Console.WriteLine("\n\n\nentrer une date [yyyy-mm-dd]");
+                string date = Console.ReadLine();
+                hm.AfficherHistorique(date);
             }
             else
             {

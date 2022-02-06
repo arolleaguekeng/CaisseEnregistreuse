@@ -36,7 +36,8 @@ go
 create table panier(
     numero int IDENTITY PRIMARY KEY NOT NULL,
     date Date NOT NULL,
-    solde float NOT NULL
+    solde float NOT NULL,
+    remise float 
    
 )
 go
