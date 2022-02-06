@@ -11,51 +11,40 @@ namespace CaisseEnregistreuse.console
     class Program
     {
         private static ProduitManager pd = new ProduitManager();
+        private static PanierManager pn = new PanierManager();
         private static AchatManager ac = new AchatManager();
         private static CaissierManager cs = new CaissierManager();
         private static Historique_manager hm = new Historique_manager();
-       
+        public static fonctionnalite fn = new fonctionnalite();
         public static Affichage affichage = new Affichage();
         static void Main(string[] args)
         {
+            List<Panier> paniers = new List<Panier>();
             List<Achat> achats = new List<Achat>();
-            List<Produit> produits1 = new List<Produit>();
-            produits1 = pd.GetAll(new Produit());
-            achats = ac.GetAll();
+           
+            string choix = "";
 
             affichage.PrintEntete();
-            string[,] produitTab = new string[produits1.Count(),4];
-            for (int i = 0; i < produitTab.GetLength(0); i++)
-            {
-                for (int j = 0; j < produitTab.GetLength(1); j++)
-                {
-                   
-                        produitTab[i, 0] = produits1[i].Code; 
-                    
-                        produitTab[i, 1] = produits1[i].Designation;
-                   
-                        produitTab[i, 2] = produits1[i].PrixAchat.ToString();
-                   
-                        produitTab[i, 3] = produits1[i].PrixAchat.ToString();
-                    break;
-                    
-                }
-            }
-
-            foreach(var ac in achats)
-            {
-                Console.WriteLine(ac._Produit.PrixAchat);
-            }
            
 
+            affichage.printMenu();
+            Console.WriteLine("veuillez entrez votre choix (appuyez sur 1 ou 2)");
+            choix = Console.ReadLine();
+            if (choix == "1")
+            {
+                fn.Enreigistre();
 
-            //foreach(var produit in produits1)
-            //{
-            //    Console.WriteLine(produit.Code + " " + produit.Designation + " " + produit.PrixAchat + " " + produit.PrixVente);
-            //}
-            //AfficherTableau(produitTab);
+            }
+            else if (choix == "2")
+            {
+
+            }
+            else
+            {
+                Console.WriteLine("choix non correct!!!");
+            }
             Console.ReadKey();
-            
+
 
         }
         public static void AfficherTableau(string[,] tableau)
@@ -102,7 +91,7 @@ namespace CaisseEnregistreuse.console
                                 while (compteur != colTailMax[j])
                                 {
                                     Console.Write('-');
-                                    System.Threading.Thread.Sleep(30);
+                                  //  System.Threading.Thread.Sleep(1);
                                     compteur++;
                                 }
                                 Console.Write((j == colTailMax.Length - 1) ? "+\n" : "+");

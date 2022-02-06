@@ -18,7 +18,17 @@ namespace CaisseEnregistreuse.DAL
 
         public Panier Add(Panier panier)
         {
-            var output = sql.Execute(" ", GetParameter(panier), true);
+            var output = sql.Execute("sp_panier_insert", GetParameter(panier), true);
+
+            return UpdatePanier(panier, output); 
+        }
+
+        private Panier UpdatePanier(Panier panier, Dictionary<string, object> outputs)
+        {
+            if(outputs != null && outputs.Count > 0)
+            {
+                panier.Numero = int.Parse(outputs["numero"].ToString());
+            }
             return panier;
         }
         public Panier Get(Panier panier)
@@ -31,7 +41,10 @@ namespace CaisseEnregistreuse.DAL
             var achat = new AchatDAO();
             var Panier = new Panier(
                 DateTime.Parse(datareader["date"].ToString()),
-                achat.Find(new Achat { NumeroPanier = int.Parse(datareader["numero"].ToString()) }).ToList()
+                achat.Find(new Achat { Numero = int.Parse(datareader["numero"].ToString()) }).ToList(),
+                double.Parse(datareader["solde"].ToString())
+                
+                
                 );
             return Panier;
         }
@@ -44,8 +57,8 @@ namespace CaisseEnregistreuse.DAL
         {
             return new Sql.Parameter[]
             {
-                new Sql.Parameter("numero", System.Data.DbType.Int64, Panier.Numero == 0? DBNull.Value:(object)Panier.Numero, System.Data.ParameterDirection.Output),
-                new Sql.Parameter("date", System.Data.DbType.DateTime, panier.Date == DateTime.MinValue? DBNull.Value:(object)panier.Date),
+                new Sql.Parameter("numero", System.Data.DbType.Int64, panier.Numero == 0? DBNull.Value:(object)panier.Numero, System.Data.ParameterDirection.Output),
+                new Sql.Parameter("date", System.Data.DbType.DateTime, panier.Date == DateTime.MinValue? DBNull.Value:(object)panier.Date ),
                 new Sql.Parameter("solde", System.Data.DbType.Double, panier.Solde == 0? DBNull.Value:(object)panier.Solde)
             };
         }

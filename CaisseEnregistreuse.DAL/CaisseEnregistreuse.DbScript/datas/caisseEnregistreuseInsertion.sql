@@ -65,7 +65,7 @@ INSERT INTO achat(quantite, montant, code, numero) VALUES(2, 2000, 'PD07CE', 3)
 INSERT INTO achat(quantite, montant, code, numero) VALUES(1, 2000, 'PD08CE', 3)
 INSERT INTO achat(quantite, montant, code, numero) VALUES(2, 3600, 'PD09CE', 1)
 INSERT INTO achat(quantite, montant, code, numero) VALUES(1, 13500, 'PD04CE', 4)
-INSERT INTO achat(quantite, montant, code, numero) VALUES(3, 3000, 'PD05CE', 4)
+INSERT INTO achat(quantite, montant, code, numero) VALUES(3, 15000, 'PD05CE', 4)
 INSERT INTO achat(quantite, montant, code, numero) VALUES(1, 2000, 'PD06CE', 4)
 
 

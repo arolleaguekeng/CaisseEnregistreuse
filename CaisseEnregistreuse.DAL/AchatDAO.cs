@@ -21,7 +21,7 @@ namespace CaisseEnregistreuse.DAL
             return achat;
         }
 
-        public IEnumerable<Achat> GetAll()
+        public IEnumerable<Achat> GetAchats()
         {
             return sql.Read<Achat>("sp_achat_select", null, GetAchat, true);
         }
@@ -39,7 +39,8 @@ namespace CaisseEnregistreuse.DAL
             (
                 produit.Get(new Produit { Code = datareader["code"].ToString()}), 
                 int.Parse(datareader["quantite"].ToString()),
-                int.Parse(datareader["numero"].ToString())
+                int.Parse(datareader["numero"].ToString()),
+                double.Parse(datareader["montant"].ToString())
             ) ;
         }
 
@@ -52,10 +53,10 @@ namespace CaisseEnregistreuse.DAL
         {
             return new Sql.Parameter[]
             {
-                new Sql.Parameter("code", System.Data.DbType.String, (object)achat._Produit.Code??DBNull.Value, System.Data.ParameterDirection.Output),
+                new Sql.Parameter("code", System.Data.DbType.String, (object)achat._Produit.Code??DBNull.Value),
                 new Sql.Parameter("quantite", System.Data.DbType.Int64, achat.Quantite == 0?DBNull.Value:(object)achat.Quantite),
                 new Sql.Parameter("montant", System.Data.DbType.Double, achat.Montant == 0?DBNull.Value:(object)achat.Montant),
-                new Sql.Parameter("numero", System.Data.DbType.Int64, achat.NumeroPanier == 0?DBNull.Value:(object)achat.NumeroPanier)
+                new Sql.Parameter("numero", System.Data.DbType.Int64, achat.Numero == 0?DBNull.Value:(object)achat.Numero)
 
             };
         }
