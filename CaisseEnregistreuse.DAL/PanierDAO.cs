@@ -29,7 +29,10 @@ namespace CaisseEnregistreuse.DAL
         {
             return sql.Read<Panier>("sp_panier_select", null, GetPanier, true);
         }
-
+        public IEnumerable<Panier> GetAllWhitDate()
+        {
+            return sql.Read<Panier>("sp_panier_select_withdate", null, GetPanierdate, true);
+        }
         private Panier GetPanier(System.Data.Common.DbDataReader datareader)
         {
             var achat = new AchatDAO();
@@ -41,7 +44,15 @@ namespace CaisseEnregistreuse.DAL
         }
 
 
-
+        private Panier GetPanierdate(System.Data.Common.DbDataReader datareader)
+        {
+            var achat = new AchatDAO();
+            var Panier = new Panier(
+                DateTime.Parse(datareader["date"].ToString()),
+                achat.Find(new Achat { NumeroPanier = int.Parse(datareader["numero"].ToString()) }).ToList()
+                );
+            return Panier;
+        }
 
 
         public IEnumerable<Panier> Find(Panier p)

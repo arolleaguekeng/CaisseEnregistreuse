@@ -21,14 +21,7 @@ namespace CaisseEnregistreuse.console
         public static Affichage affichage = new Affichage();
         static void Main(string[] args)
         {
-            //Console.WriteLine(pd.Get(new Produit { Code = "PD01CE" }).Designation);
-
-            foreach (var history in hManager.GetHistorique(DateTime.Parse("02/10/2022")))
-            {
-                Console.WriteLine(history.Date+"\t\t\t"+ history.CodeProduit + "\t\t\t"+ history.QuantiteProduit+
-                    "\t\t" + history.PrixVenteProduit + "\t\t" + history.MontantTotalAchat); 
-            }
-
+            hm.AfficherHistorique(hm.GetHistorique(DateTime.Parse("10/12/2021")));
             //List<Achat> achats = new List<Achat>();
             //List<Produit> produits1 = new List<Produit>();
             //produits1 = pd.GetAll(new Produit());
