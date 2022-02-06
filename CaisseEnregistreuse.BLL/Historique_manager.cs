@@ -52,34 +52,38 @@ namespace CaisseEnregistreuse.BLL
 
         public void AfficherHistorique(List<Historique> historiques)
         {
+            int tablesize = 139;
+            int leftpad = 6;
+            int rightpad = 12;
             int nombreLine = 0;
             //Console.WriteLine(pd.Get(new Produit { Code = "PD01CE" }).Designation);
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("+".PadRight(139, '-') + "+");
+            Console.WriteLine("+".PadRight(tablesize, '-') + "+");
 
-            Console.WriteLine("|".PadRight(6, ' ') + "Date".PadRight(25, ' ') +
-                              "|".PadRight(6, ' ') + "Code ".PadRight(12, ' ') +
-                              "|".PadRight(6, ' ') + "Quantite ".PadRight(12, ' ') +
-                              "|".PadRight(6, ' ') + "P_Vente".PadRight(12, ' ') +
-                              "|".PadRight(6, ' ') + "P_achat".PadRight(12, ' ') +
-                              "|".PadRight(6, ' ') + "T_Achat".PadRight(12, ' ') +
-                              "|".PadRight(6, ' ') + "benefice".PadRight(12, ' ') + '|');
+            Console.WriteLine("|".PadRight(leftpad, ' ') + "Date".PadRight(25, ' ') +
+                              "|".PadRight(leftpad, ' ') + "Code ".PadRight(     rightpad, ' ') +
+                              "|".PadRight(leftpad, ' ') + "Quantite ".PadRight( rightpad, ' ') +
+                              "|".PadRight(leftpad, ' ') + "P_Vente".PadRight(   rightpad, ' ') +
+                              "|".PadRight(leftpad, ' ') + "P_achat".PadRight(   rightpad, ' ') +
+                              "|".PadRight(leftpad, ' ') + "T_Achat".PadRight(   rightpad, ' ') +
+                              "|".PadRight(leftpad, ' ') + "benefice".PadRight(  rightpad, ' ') + '|');
 
-            Console.WriteLine("+".PadRight(139, '-') + "+");
+            Console.WriteLine("+".PadRight(tablesize, '-') + "+");
             Console.ForegroundColor = ConsoleColor.White;
             foreach (var history in GetHistorique(DateTime.Parse("02/10/2022")))
             {
-                Console.WriteLine(" ".PadRight(6, ' ') + history.Date.ToString().PadRight(25, ' ') +
-                                  "|".PadRight(6, ' ') + history.CodeProduit.PadRight(12, ' ') +
-                                  "|".PadRight(6, ' ') + history.QuantiteProduit.ToString().PadRight(12, ' ') +
-                                  "|".PadRight(6, ' ') + history.PrixVenteProduit.ToString().PadRight(12, ' ') +
-                                  "|".PadRight(6, ' ') + history.MontantAchat.ToString().PadRight(12, ' ') +
-                                  "|".PadRight(6, ' ') + history.MontantTotalAchat.ToString().PadRight(12, ' ') +
-                                  "|".PadRight(6, ' ') + history.Benefice.ToString().PadRight(12, ' ') + '|');
-                Console.WriteLine("+".PadRight(139, '-') + "+");
+                Console.WriteLine(" ".PadRight(leftpad, ' ') + history.Date.ToString().PadRight(25, ' ') +
+                                  "|".PadRight(leftpad, ' ') + history.CodeProduit.PadRight(rightpad, ' ') +
+                                  "|".PadRight(leftpad, ' ') + history.QuantiteProduit.ToString().PadRight(rightpad, ' ') +
+                                  "|".PadRight(leftpad, ' ') + history.PrixVenteProduit.ToString().PadRight(rightpad, ' ') +
+                                  "|".PadRight(leftpad, ' ') + history.MontantAchat.ToString().PadRight(rightpad, ' ') +
+                                  "|".PadRight(leftpad, ' ') + history.MontantTotalAchat.ToString().PadRight(rightpad, ' ') +
+                                  "|".PadRight(leftpad, ' ') + history.Benefice.ToString().PadRight(rightpad, ' ') + '|');
+                Console.WriteLine("+".PadRight(tablesize, '-') + "+");
                 nombreLine++;
             }
             Console.WriteLine("\n\n\n" + nombreLine);
         }
     }
 }
+ 
