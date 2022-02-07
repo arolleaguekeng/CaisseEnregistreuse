@@ -166,7 +166,7 @@ namespace CaisseEnregistreuse.console
                 this.PrintEntete();
                 Console.Write("\n\n\nentrer une date [yyyy-mm-dd] : \t\t");
                 string date = Console.ReadLine();
-                hm.AfficherHistorique(date);
+                Program.AfficherTableau(hm.AfficherHistorique(date));
             }
             else
             {

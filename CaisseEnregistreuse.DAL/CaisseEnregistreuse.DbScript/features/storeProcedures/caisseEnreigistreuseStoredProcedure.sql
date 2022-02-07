@@ -50,10 +50,10 @@ go
 
 CREATE PROCEDURE sp_panier_select
 (
-    @numero int = NULL,
-    @date Date = NULL,
+    @numero int = NULL OUTPUT,
+    @date Date = NULL ,
     @solde float = NULL,
-    @remise float = NULL
+	  @remise float = NULL
    
 )
 AS
@@ -112,7 +112,7 @@ go
 
 CREATE PROCEDURE sp_panier_insert
 (
- @numero NVARCHAR(6) = NULL,
+ @numero NVARCHAR(6) = NULL OUTPUT,
  @date Date = NULL,
  @solde float = NULL,
  @remise float = NULL
@@ -124,43 +124,21 @@ BEGIN
     (
       date,
       solde,
-      numero
+	    remise
     )
     VALUES(
       @date,
       @solde,
-      numero
+	    @remise
      
     )
+	set @numero = @@IDENTITY
 END
 go
 
 
 
-CREATE PROCEDURE Sp_Tiket_Insert
-(
- @remise float = NULL,
- @netApayer float = NULL,
- @numero int = NULL,
- @matricule NVARCHAR(11) = NULL
 
-)
-AS
-BEGIN
-   INSERT INTO Panier
-    (
-      remise,
-      netApayer,
-      matricule
-    )
-    VALUES(
-      @remise,
-      @netApayer,
-      @matricule
-     
-    )
-END
-go
 
 
 
