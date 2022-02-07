@@ -124,7 +124,7 @@ namespace CaisseEnregistreuse.console
                     {
                         do
                         {
-                            Console.WriteLine("\n\nentre une valeur en pourcentage pour la remise");
+                            Console.WriteLine("\n\nentre une valeur  pour la remise");
                             valeurRemise = double.Parse(Console.ReadLine());
                         }
                         while (valeurRemise > Montant || valeurRemise < 0);
@@ -150,8 +150,28 @@ namespace CaisseEnregistreuse.console
                         achatManager.Add(achats[i]);
                     }
                 }
-                
 
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("+".PadRight(100, '-') + "+");
+                string column = "".PadRight(50, ' ') + "Tiket".PadRight(50, ' ') + "|";
+                Console.WriteLine(column);
+                Console.WriteLine("+".PadRight(100, '-') + "+");
+                Console.ForegroundColor = ConsoleColor.White;
+                string[,] produits = new string[achats.Count, 4];
+
+                for (int i = 0; i < achats.Count; i++)
+                {
+                    for (int j = 0; i < 4; j++)
+                    {
+                        produits[i, 0] = achats[i]._Produit.Code.ToString();
+                        produits[i, 1] = achats[i]._Produit.Designation.ToString();
+                        produits[i, 2] = achats[i]._Produit.PrixVente.ToString();
+                        produits[i, 3] = achats[i].Montant.ToString();
+                        break;
+                    }
+
+
+                }
             }
             Console.WriteLine("\n\nQuitter l'enregistrement des achats");
             Console.ReadKey();

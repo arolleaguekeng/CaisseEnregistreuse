@@ -52,7 +52,8 @@ CREATE PROCEDURE sp_panier_select
 (
     @numero int = NULL,
     @date Date = NULL,
-    @solde float = NULL
+    @solde float = NULL,
+    @remise float = NULL
    
 )
 AS
@@ -150,13 +151,11 @@ BEGIN
     (
       remise,
       netApayer,
-      numero,
       matricule
     )
     VALUES(
       @remise,
       @netApayer,
-      @numero,
       @matricule
      
     )
