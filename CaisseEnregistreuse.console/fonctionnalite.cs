@@ -94,15 +94,15 @@ namespace CaisseEnregistreuse.console
            
             if (achats.Count() >= 1)
             {
-                Console.WriteLine("\n\nles achats total de ce panier sont de : \t\t" +Montant);
+                Console.WriteLine("\n\nles achats total de ce panier sont de : \t\t" + Montant);
                 Console.WriteLine("\n\nvoulez vous applique une remise a ce panier ??? (Appuyer sur O ou N)");
                 choix = Console.ReadLine();
-                if(choix == "O" || choix == "o")
+                if (choix == "O" || choix == "o")
                 {
                     Console.WriteLine("\n\nChoix de la remise a appliquer");
                     Console.WriteLine("\n\n1)remise par pourcentage\t\t\t2)remise par valeur ");
                     choix = Console.ReadLine();
-                    if(choix == "1")
+                    if (choix == "1")
                     {
                         do
                         {
@@ -119,8 +119,9 @@ namespace CaisseEnregistreuse.console
                             PanierCourant = numPanier.Numero;
                             achatManager.Add(achats[i]);
                         }
+                        AfficherTiket(achats);
                     }
-                    else if(choix == "2")
+                    else if (choix == "2")
                     {
                         do
                         {
@@ -137,8 +138,9 @@ namespace CaisseEnregistreuse.console
                             PanierCourant = numPanier.Numero;
                             achatManager.Add(achats[i]);
                         }
+                        AfficherTiket(achats);
                     }
-                    
+
                 }
                 else
                 {
@@ -149,35 +151,47 @@ namespace CaisseEnregistreuse.console
                         PanierCourant = numPanier.Numero;
                         achatManager.Add(achats[i]);
                     }
+                    AfficherTiket(achats);
                 }
 
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("+".PadRight(100, '-') + "+");
-                string column = "".PadRight(50, ' ') + "Tiket".PadRight(50, ' ') + "|";
-                Console.WriteLine(column);
-                Console.WriteLine("+".PadRight(100, '-') + "+");
-                Console.ForegroundColor = ConsoleColor.White;
-                string[,] produits = new string[achats.Count, 4];
 
-                for (int i = 0; i < achats.Count; i++)
-                {
-                    for (int j = 0; i < 4; j++)
-                    {
-                        produits[i, 0] = achats[i]._Produit.Code.ToString();
-                        produits[i, 1] = achats[i]._Produit.Designation.ToString();
-                        produits[i, 2] = achats[i]._Produit.PrixVente.ToString();
-                        produits[i, 3] = achats[i].Montant.ToString();
-                        break;
-                    }
-
-
-                }
             }
             Console.WriteLine("\n\nQuitter l'enregistrement des achats");
             Console.ReadKey();
             Console.Clear();
             Affichage.PrintEntete();
             Affichage.printMenu();
+        }
+
+        private static void AfficherTiket(List<Achat> achats)
+        {
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("+".PadRight(100, '-') + "+");
+            string column = "".PadRight(50, ' ') + "Tiket".PadRight(50, ' ') + "|";
+            Console.WriteLine(column);
+            Console.WriteLine("+".PadRight(100, '-') + "+");
+            Console.ForegroundColor = ConsoleColor.White;
+            string[,] produits = new string[achats.Count, 4];
+            produits[0, 0] = "Produits";
+            produits[0, 1] = "Designation";
+            produits[0, 2] = "PrixVente";
+            produits[0, 3] = "Montant";
+            for (int i = 1; i < achats.Count+1; i++)
+            {
+                
+                for (int j = 1; i < 6; j++)
+                {
+
+                    produits[i, 0] = achats[i]._Produit.Code.ToString();
+                    produits[i, 1] = achats[i]._Produit.Designation.ToString();
+                    produits[i, 2] = achats[i]._Produit.PrixVente.ToString();
+                    produits[i, 3] = achats[i].Montant.ToString();
+                    break;
+                }
+                Console.WriteLine("Nom du caissier : " + Program.currentCaissier);
+                Program.AfficherTableau(produits);
+
+            }
         }
     }
 }
