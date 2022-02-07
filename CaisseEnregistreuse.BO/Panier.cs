@@ -9,6 +9,7 @@ namespace CaisseEnregistreuse.BO
         public DateTime Date { get; set; }
         public List<Achat> Achats { get; set; }
         public double Solde { get; set; }
+        public double Remise { get; set; }
         public Panier()
         {
             Achats = new List<Achat>();
@@ -23,14 +24,17 @@ namespace CaisseEnregistreuse.BO
 
         public Panier(DateTime date, List<Achat> achats, double solde)
         {
-            Numero++;
+          
             Date = date;
             Achats = achats;
             Solde = solde;
+
         }
 
-
-
+        public Panier(DateTime date, List<Achat> achats, double solde, double remise) : this(date, achats, solde)
+        {
+            Remise = remise;
+        }
 
         public override bool Equals(object obj)
         {

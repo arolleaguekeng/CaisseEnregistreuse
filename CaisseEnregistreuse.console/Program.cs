@@ -14,39 +14,21 @@ namespace CaisseEnregistreuse.console
         private static PanierManager pn = new PanierManager();
         private static AchatManager ac = new AchatManager();
         private static CaissierManager cs = new CaissierManager();
-        private static Historique_manager hm = new Historique_manager();
-        public static fonctionnalite fn = new fonctionnalite();
+        
         public static Affichage affichage = new Affichage();
         static void Main(string[] args)
         {
             List<Panier> paniers = new List<Panier>();
             List<Achat> achats = new List<Achat>();
            
-            string choix = "";
+         
 
             affichage.PrintEntete();
            
 
             affichage.printMenu();
-            Console.WriteLine("veuillez entrez votre choix (appuyez sur 1 ou 2)");
-            choix = Console.ReadLine();
-            if (choix == "1")
-            {
-                fn.Enreigistre();
-
-            }
-            else if (choix == "2")
-            {
-                Console.Clear();
-                affichage.PrintEntete();
-                Console.WriteLine("\n\n\nentrer une date [yyyy-mm-dd]");
-                string date = Console.ReadLine();
-                hm.AfficherHistorique(date);
-            }
-            else
-            {
-                Console.WriteLine("choix non correct!!!");
-            }
+            
+            
             Console.ReadKey();
 
 

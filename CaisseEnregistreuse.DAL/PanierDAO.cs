@@ -59,7 +59,8 @@ namespace CaisseEnregistreuse.DAL
             {
                 new Sql.Parameter("numero", System.Data.DbType.Int64, panier.Numero == 0? DBNull.Value:(object)panier.Numero, System.Data.ParameterDirection.Output),
                 new Sql.Parameter("date", System.Data.DbType.DateTime, panier.Date == DateTime.MinValue? DBNull.Value:(object)panier.Date ),
-                new Sql.Parameter("solde", System.Data.DbType.Double, panier.Solde == 0? DBNull.Value:(object)panier.Solde)
+                new Sql.Parameter("solde", System.Data.DbType.Double, panier.Solde == 0? DBNull.Value:(object)panier.Solde),
+                new Sql.Parameter("remise", System.Data.DbType.Double, panier.Remise == 0? DBNull.Value:(object)panier.Remise)
             };
         }
     }

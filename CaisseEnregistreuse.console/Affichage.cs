@@ -13,12 +13,14 @@ namespace CaisseEnregistreuse.console
         public static double Compteur = 0;
         List<Panier> paniers;
         PanierManager panierManager;
+        private static Historique_manager hm = new Historique_manager();
+        public static fonctionnalite fn = new fonctionnalite();
         public Affichage()
         {
             paniers = new List<Panier>();
             panierManager = new PanierManager();
-           
             
+
         }
 
         public void PrintEntete()
@@ -65,6 +67,7 @@ namespace CaisseEnregistreuse.console
 
         public void printMenu()
         {
+            Compteur = 0;
             paniers = panierManager.Find(new Panier { Date = DateTime.Now });
             foreach (var p in paniers)
             {
@@ -148,8 +151,28 @@ namespace CaisseEnregistreuse.console
             }
             
             Console.WriteLine(new string('*', 100));
-            Console.WriteLine("\n");
-        }
+            Console.WriteLine("\n\n");
+            string choix = "";
+            Console.WriteLine("veuillez entrez votre choix (appuyez sur 1 ou 2)");
+            choix = Console.ReadLine();
+            if (choix == "1")
+            {
+                fn.Enreigistre();
 
+            }
+            else if (choix == "2")
+            {
+                Console.Clear();
+                this.PrintEntete();
+                Console.Write("\n\n\nentrer une date [yyyy-mm-dd] : \t\t");
+                string date = Console.ReadLine();
+                hm.AfficherHistorique(date);
+            }
+            else
+            {
+                Console.WriteLine("\n\nchoix non correct!!!");
+            }
+        }
+        
     }
 }
