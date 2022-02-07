@@ -33,19 +33,17 @@ namespace CaisseEnregistreuse.BLL
         {
             return manager.CalculSolde(panier);
         }
-        public void AfficherTiket(Panier panier)
+        public void AfficherTiket(Panier panier, string[,] tab)
         {
             Console.WriteLine("+".PadRight(100, '-') + "+");
-            string column = "".PadRight(100, ' ') + "Tiket".PadRight(100, ' ') + "|";
+            string column = "".PadRight(50, ' ') + "Tiket".PadRight(50, ' ') + "|";
             Console.WriteLine(column);
             Console.WriteLine("+".PadRight(100, '-') + "+");
-            foreach (var achat in panier.Achats)
-            {
-                Console.WriteLine("|".PadRight(100, '-') + "|");
-                Console.WriteLine("|".PadRight(10, ' ') + achat._Produit.Code + " ".PadRight(10, ' ') + achat._Produit.PrixVente);
-            }
+            string[,] produits = new string[panier.Achats.Count,4];
+           
 
 
+            
         }
     }
 }

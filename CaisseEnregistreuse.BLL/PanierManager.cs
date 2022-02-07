@@ -39,6 +39,5 @@ namespace CaisseEnregistreuse.BLL
             }
             return solde;
         }
-       
     }
 }
