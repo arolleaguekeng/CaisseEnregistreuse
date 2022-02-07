@@ -24,7 +24,7 @@ namespace CaisseEnregistreuse.BLL
             }
             if(typeRemise.ToLower()=="n")
             { 
-               tiket.NetAPayer =  manager.CalculSolde(panier) - remise;
+               tiket.NetAPayer =  manager.CalculSolde(panier) - remise; 
             }
             return panier.Solde - remise;
         }

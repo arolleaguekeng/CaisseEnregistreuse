@@ -14,21 +14,51 @@ namespace CaisseEnregistreuse.console
         private static PanierManager pn = new PanierManager();
         private static AchatManager ac = new AchatManager();
         private static CaissierManager cs = new CaissierManager();
+        public static string currentCaissier;
         
         public static Affichage affichage = new Affichage();
         static void Main(string[] args)
         {
             List<Panier> paniers = new List<Panier>();
             List<Achat> achats = new List<Achat>();
-           
+            Console.WriteLine("Entrer le matricule du caissier");
+            currentCaissier = Console.ReadLine();
+            try
+            {
+                var caissier = cs.Get(new Caissier { Matricule = currentCaissier });
+                if(caissier !=null)
+                {
+                    currentCaissier = caissier.Nom;
+                    Console.WriteLine(currentCaissier);
+                    affichage.PrintEntete();
+                    affichage.printMenu();
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("cet utilisateur  n'existe pas veuillez reesayez");
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Main(args);
+                }
+
+            }
+            catch
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Une erreure c'est produite");
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.White;
+                Main(args);
+            }
+            
+
+
          
 
-            affichage.PrintEntete();
-           
 
-            affichage.printMenu();
             
-            
+          
             Console.ReadKey();
 
 
