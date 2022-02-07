@@ -35,15 +35,31 @@ namespace CaisseEnregistreuse.BLL
             {
                 for(int j=0; j<TabHistory.GetLength(1); j++)
                 {
-                    TabHistory[i, 0] = historiques[i].Date;
-                    TabHistory[i, 1] = historiques[i].CodeProduit;
-                    TabHistory[i, 2] = historiques[i].QuantiteProduit.ToString();
-                    TabHistory[i, 3] = historiques[i].PrixAchatProduit.ToString();
-                    TabHistory[i, 4] = historiques[i].PrixVenteProduit.ToString();
-                    TabHistory[i, 5] = historiques[i].MontantAchat.ToString();
-                    TabHistory[i, 6] = historiques[i].MontantTotalAchat.ToString();
-                    TabHistory[i, 7] = historiques[i].Benefice.ToString();
-                    break;
+                    if (i == 0)
+                    {
+                        TabHistory[i, 0] = "Date";
+                        TabHistory[i, 1] = "Code";
+                        TabHistory[i, 2] = "Quantite";
+                        TabHistory[i, 3] = "Prix achat";
+                        TabHistory[i, 4] = "Prix vente";
+                        TabHistory[i, 5] = "Montant achat";
+                        TabHistory[i, 6] = "Montant vente";
+                        TabHistory[i, 7] = "Benefice";
+                        break;
+                    }
+                    else
+                    {
+                        TabHistory[i, 0] = DateTime.Parse(historiques[i].Date).ToShortDateString();
+                        TabHistory[i, 1] = historiques[i].CodeProduit;
+                        TabHistory[i, 2] = historiques[i].QuantiteProduit.ToString();
+                        TabHistory[i, 3] = historiques[i].PrixAchatProduit.ToString();
+                        TabHistory[i, 4] = historiques[i].PrixVenteProduit.ToString();
+                        TabHistory[i, 6] = historiques[i].MontantAchat.ToString();
+                        TabHistory[i, 5] = historiques[i].MontantVente.ToString();
+                        TabHistory[i, 7] = historiques[i].Benefice.ToString();
+                        break;
+                    }
+                    
                 }
             }
 

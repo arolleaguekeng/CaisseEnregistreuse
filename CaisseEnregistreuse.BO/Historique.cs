@@ -15,7 +15,7 @@ namespace CaisseEnregistreuse.BO
         public double Benefice { get; set; }
         public string Date { get; set; }
         public double MontantAchat { get; set; }
-        public double MontantTotalAchat { get; set; }
+        public double MontantVente { get; set; }
 
 
         public Historique()
@@ -32,7 +32,7 @@ namespace CaisseEnregistreuse.BO
             Benefice = benefice;
             Date = date;
             MontantAchat = montantAchat;
-            MontantTotalAchat = montantTotalAchat;
+            MontantVente = montantTotalAchat;
         }
     }
 }

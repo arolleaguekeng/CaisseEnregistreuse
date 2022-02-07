@@ -110,7 +110,6 @@ namespace CaisseEnregistreuse.console
                             valeurRemise = double.Parse(Console.ReadLine());
                         }
                         while (valeurRemise > 100 || valeurRemise < 0);
-                        Montant = Montant - (Montant * valeurRemise) / 100;
                         Console.WriteLine($"\n\nRemise de {(Montant * valeurRemise) / 100} FCFA appliquez avec succes");
                         numPanier = panierManager.Add(new Panier(DateTime.Now, null, Montant, valeurRemise));
                         for (int i = 0; i < achats.Count(); i++)
@@ -128,7 +127,6 @@ namespace CaisseEnregistreuse.console
                             valeurRemise = double.Parse(Console.ReadLine());
                         }
                         while (valeurRemise > Montant || valeurRemise < 0);
-                        Montant = Montant - valeurRemise;
                         Console.WriteLine($"\n\nRemise de {valeurRemise} FCFA appliquez avec succes");
                         numPanier = panierManager.Add(new Panier(DateTime.Now, null, Montant, valeurRemise));
                         for (int i = 0; i < achats.Count(); i++)

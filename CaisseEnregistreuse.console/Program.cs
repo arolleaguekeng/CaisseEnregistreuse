@@ -95,7 +95,14 @@ namespace CaisseEnregistreuse.console
                             {
                                 while (tableau[i, j].Length < colTailMax[j])
                                 {
-                                    tableau[i, j] += " ";
+                                    if(double.TryParse(tableau[i, j],out _))
+                                    {
+                                        tableau[i, j] = tableau[i, j].PadLeft(colTailMax[j]);
+                                    }
+                                    else
+                                    {
+                                        tableau[i, j] = tableau[i, j].PadRight(colTailMax[j]);
+                                    }
                                 }
                                 Console.Write((j == colTailMax.Length - 1) ? tableau[i, j] + "|\n" : tableau[i, j] + "|");
                             }

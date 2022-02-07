@@ -17,8 +17,8 @@ namespace CaisseEnregistreuse.DAL
 
         public IEnumerable<Historique> Get(Historique historique , string date)
         {
-            string query = $"SELECT DISTINCT pd.code, SUM(a.quantite) as quantiteProduit , pd.prixAchat , pd.prixVente , a.montant ,SUM(pd.prixAchat) as montantTotalAchat " +
-                ",SUM(pd.prixVente)-SUM(pd.prixAchat) as benefice" +
+            string query = $"SELECT DISTINCT pd.code, SUM(a.quantite) as quantiteProduit , pd.prixAchat , pd.prixVente , a.montant ,SUM(pd.prixAchat )* SUM(a.quantite) as montantTotalAchat " +
+                ",SUM(pd.prixVente)*SUM(a.quantite)-SUM(pd.prixAchat)*SUM(a.quantite) as benefice" +
                 ",p.date " +
                 "FROM produit pd JOIN achat a on(a.code = pd.code)" +
                 " JOIN panier p on(a.numero = p.numero)" +
@@ -46,7 +46,7 @@ namespace CaisseEnregistreuse.DAL
                 new Parameter("prixAchatProduit", System.Data.DbType.Double,historique.PrixAchatProduit == 0?DBNull.Value:(object)historique.PrixAchatProduit ),
                 new Parameter("prixVenteProduit", System.Data.DbType.Double,historique.PrixVenteProduit == 0?DBNull.Value:(object)historique.PrixVenteProduit ),
                 new Parameter("montantAchat", System.Data.DbType.Double,historique.MontantAchat == 0?DBNull.Value:(object)historique.PrixVenteProduit ),
-                new Parameter("montantTotalAchat", System.Data.DbType.Double,historique.MontantTotalAchat == 0?DBNull.Value:(object)historique.PrixVenteProduit ),
+                new Parameter("montantTotalAchat", System.Data.DbType.Double,historique.MontantVente == 0?DBNull.Value:(object)historique.PrixVenteProduit ),
                 new Parameter("benefice", System.Data.DbType.Double,historique.Benefice == 0?DBNull.Value:(object)historique.Benefice),
                 new Parameter("date", System.Data.DbType.String,historique.Date == null?DBNull.Value:(object)historique.Date  , System.Data.ParameterDirection.Output)
 
