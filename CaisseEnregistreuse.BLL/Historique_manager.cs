@@ -37,6 +37,7 @@ namespace CaisseEnregistreuse.BLL
                 {
                     if (i == 0)
                     {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
                         TabHistory[i, 0] = "Date";
                         TabHistory[i, 1] = "Code";
                         TabHistory[i, 2] = "Quantite";
@@ -45,6 +46,7 @@ namespace CaisseEnregistreuse.BLL
                         TabHistory[i, 5] = "Montant achat";
                         TabHistory[i, 6] = "Montant vente";
                         TabHistory[i, 7] = "Benefice";
+                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     }
                     else
