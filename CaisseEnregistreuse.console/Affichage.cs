@@ -183,6 +183,55 @@ namespace CaisseEnregistreuse.console
                 Console.WriteLine("\n\nchoix non correct!!!");
             }
         }
-        
+
+
+
+        public  void AfficherSplash()
+        {
+            int tread = 150;
+            Console.ForegroundColor = ConsoleColor.Gray;
+            System.Threading.Thread.Sleep(tread);
+            Console.WriteLine("|********************|          |****|                 |****|         |*************************|");
+            System.Threading.Thread.Sleep(tread);
+            Console.WriteLine("|********************|          |****|                 |****|         |*************************|");
+            System.Threading.Thread.Sleep(tread);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            System.Threading.Thread.Sleep(tread);
+            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            System.Threading.Thread.Sleep(tread);
+            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            System.Threading.Thread.Sleep(tread);
+            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            System.Threading.Thread.Sleep(tread);
+            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            System.Threading.Thread.Sleep(tread);
+            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            System.Threading.Thread.Sleep(tread);
+            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            System.Threading.Thread.Sleep(tread);
+            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            System.Threading.Thread.Sleep(tread);
+            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            System.Threading.Thread.Sleep(tread);
+            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            System.Threading.Thread.Sleep(tread);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("|********************|          |***************************|         |*************************|");
+            System.Threading.Thread.Sleep(tread);
+            Console.WriteLine("|********************|          |***************************|         |*************************|");
+
+
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("\n\n");
+            Console.WriteLine("\t\t\t\t ************   ************   **************   *************");
+            Console.WriteLine("\t\t\t\t          ***        ***       ***        ***   ***");
+            Console.WriteLine("\t\t\t\t          ***        ***       ***        ***   ***");
+            Console.WriteLine("\t\t\t\t ************        ***       **************   ***");
+            Console.WriteLine("\t\t\t\t          ***        ***       ***        ***   ***");
+            Console.WriteLine("\t\t\t\t          ***        ***       ***        ***   ***");
+            Console.WriteLine("\t\t\t\t ************   ************   ***        ***   *************");
+
+        }
     }
 }

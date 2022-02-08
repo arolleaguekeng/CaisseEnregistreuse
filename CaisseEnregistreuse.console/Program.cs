@@ -20,11 +20,15 @@ namespace CaisseEnregistreuse.console
         public static Affichage affichage = new Affichage();
         static void Main(string[] args)
         {
+            Console.Clear();
             string matricule;
             List<Panier> paniers = new List<Panier>();
             List<Achat> achats = new List<Achat>();
-            affichage.PrintEntete();
-            Console.Write("\n\nEntrer le matricule du caissier : \t");
+            affichage.AfficherSplash();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("Application console de caisse enregistreuse");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Entrez le nom du caissier....");
             matricule = Console.ReadLine();
             try
             {
@@ -32,7 +36,7 @@ namespace CaisseEnregistreuse.console
                 if(caissier !=null)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine("\nConnexion OK");
+                    Console.WriteLine($"\nConnexion reussie   Bonjour  {caissier.Nom}");
                     Console.ReadKey();
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Clear();
@@ -43,7 +47,7 @@ namespace CaisseEnregistreuse.console
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("\ncet utilisateur  n'existe pas veuillez reesayez");
+                    Console.WriteLine("\ncet utilisateur  n'existe pas veuillez reesayez\n Appuyez sur une touche pour réessayer.....");
                     Console.ReadKey();
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.White;
@@ -54,8 +58,10 @@ namespace CaisseEnregistreuse.console
             catch
             {
                 Console.ForegroundColor = ConsoleColor.Red;
+
+                Console.WriteLine("\nUne erreure c'est produite Appuiyez sur une touche pour réessayer");
+                Console.ReadKey();
                 Main(args);
-                Console.WriteLine("\nUne erreure c'est produite");
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.White;
                
