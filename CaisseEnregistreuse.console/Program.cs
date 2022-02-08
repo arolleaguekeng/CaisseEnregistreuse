@@ -26,9 +26,9 @@ namespace CaisseEnregistreuse.console
             List<Achat> achats = new List<Achat>();
             affichage.AfficherSplash();
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Application console de caisse enregistreuse");
+            Console.WriteLine("Application console de caisse enregistreuse !");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("Entrez le nom du caissier....");
+            Console.WriteLine("Entrez le matricule du caissier....");
             matricule = Console.ReadLine();
             try
             {
@@ -36,7 +36,11 @@ namespace CaisseEnregistreuse.console
                 if(caissier !=null)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"\nConnexion reussie   Bonjour  {caissier.Nom}");
+                    Console.WriteLine($"\nConnexion reussie !!");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine($"Bonjour  { caissier.Nom.ToUpper()}!");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("Appuyer sur une touche pour continuer...");
                     Console.ReadKey();
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.Clear();
@@ -59,7 +63,7 @@ namespace CaisseEnregistreuse.console
             {
                 Console.ForegroundColor = ConsoleColor.Red;
 
-                Console.WriteLine("\nUne erreure c'est produite Appuiyez sur une touche pour réessayer");
+                Console.WriteLine("\nUne erreur c'est produite Appuyez sur une touche pour réessayer");
                 Console.ReadKey();
                 Main(args);
                 Console.Clear();
