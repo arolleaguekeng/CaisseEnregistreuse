@@ -205,7 +205,7 @@ namespace CaisseEnregistreuse.console
                                 while (compteur != colTailMax[j])
                                 {
                                     Console.Write('-');
-                                    //  System.Threading.Thread.Sleep(1);
+                                    System.Threading.Thread.Sleep(1);
                                     compteur++;
                                 }
                                 Console.Write((j == colTailMax.Length - 1) ? "+".PadRight(23, ' ') + "|\n|\t\t" : "+");
