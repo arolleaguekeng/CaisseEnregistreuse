@@ -172,7 +172,7 @@ namespace CaisseEnregistreuse.console
                     }
                     colTailMax[i] = tailleMax ;
                 }
-            Console.Write("\t\t");
+            Console.Write("|\t\t");
                 //Affichage proprement dit.
                 for (int i = 0; i < tableau.GetLength(0); i++)
                 {
@@ -198,7 +198,7 @@ namespace CaisseEnregistreuse.console
                                     //  System.Threading.Thread.Sleep(1);
                                     compteur++;
                                 }
-                                Console.Write((j == colTailMax.Length - 1) ? "+\n\t\t" : "+");
+                                Console.Write((j == colTailMax.Length - 1) ? "+".PadRight(23, ' ') + "|\n|\t\t" : "+");
                             }
                             if (etapeAffichage == 1 && i == 0)
                                 etapeAffichage -= 2;
@@ -222,13 +222,14 @@ namespace CaisseEnregistreuse.console
                                         tableau[i, j] = tableau[i, j].PadRight(colTailMax[j]);
                                     }
                                 }
-                                Console.Write((j == colTailMax.Length - 1) ? tableau[i, j] + "|\n\t\t" : tableau[i, j] + "|");
+                                Console.Write((j == colTailMax.Length - 1) ? tableau[i, j] + "|".PadRight(23, ' ') +"|\n|\t\t" : tableau[i, j] + "|");
                             }
                             etapeAffichage--;
                         }
                     }
                 }
-           
+            Console.Write("\n");
         }
+        
     }
 }
