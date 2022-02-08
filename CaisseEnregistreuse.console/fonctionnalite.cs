@@ -35,8 +35,10 @@ namespace CaisseEnregistreuse.console
             string choix = String.Empty;
             List<Achat> achats = new List<Achat>();
             bool Remiser = true;
-            double valeurRemise;
+            double valeurRemise=0;
             Panier numPanier;
+            double Montant_Percu=0;
+            double Remboursement = 0;
 
 
             while (continuer)
@@ -65,7 +67,7 @@ namespace CaisseEnregistreuse.console
                     if(choix == "O" || choix == "o")
                     {
                        // var num = achatManager.Add(new Achat { Quantite = quantite, Numero = Panier.Numero, _Produit = produit , Montant = quantite*produit.PrixVente });
-                        achats.Add(new Achat(new Produit(produit.Code, produit.Designation, produit.PrixAchat, produit.PrixVente), quantite, quantite * produit.PrixVente));
+                        achats.Add(new Achat(produit, quantite, quantite * produit.PrixVente));
                     }
                 }
                 else
@@ -111,6 +113,7 @@ namespace CaisseEnregistreuse.console
                         }
                         while (valeurRemise > 100 || valeurRemise < 0);
                         Console.WriteLine($"\n\nRemise de {(Montant * valeurRemise) / 100} FCFA appliquez avec succes");
+                        valeurRemise = (Montant * valeurRemise) / 100;
                         numPanier = panierManager.Add(new Panier(DateTime.Now, null, Montant, valeurRemise));
                         for (int i = 0; i < achats.Count(); i++)
                         {
@@ -118,7 +121,6 @@ namespace CaisseEnregistreuse.console
                             PanierCourant = numPanier.Numero;
                             achatManager.Add(achats[i]);
                         }
-                        AfficherTiket(achats);
                     }
                     else if (choix == "2")
                     {
@@ -136,7 +138,6 @@ namespace CaisseEnregistreuse.console
                             PanierCourant = numPanier.Numero;
                             achatManager.Add(achats[i]);
                         }
-                        AfficherTiket(achats);
                     }
 
                 }
@@ -149,11 +150,50 @@ namespace CaisseEnregistreuse.console
                         PanierCourant = numPanier.Numero;
                         achatManager.Add(achats[i]);
                     }
-                    AfficherTiket(achats);
+                   
                 }
 
-
+                Console.Write("\n\nentrer le montant percu du client: \t\t");
+                Montant_Percu = double.Parse(Console.ReadLine());
+                while (Montant_Percu < Montant)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("\nle montant doit etre superieur ou egal au montant total des achats");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("\nveuillez entrer un autre montant !!!");
+                    Montant_Percu = double.Parse(Console.ReadLine());
+                }
+                Remboursement = Montant_Percu - Montant + valeurRemise;
+                Console.WriteLine("\n#########################################################");
+                Console.WriteLine("\n\tmontant total achat :\t"+Montant + " FCFA");
+                Console.WriteLine("\n\tmontant du client   :\t" + Montant_Percu + " FCFA");
+                Console.WriteLine("\n\tRemise applique     :\t" + valeurRemise + " FCFA");
+                Console.WriteLine("\n\tRemboursement       :\t" + Remboursement + " FCFA");
+                Console.ReadKey();
+                Console.WriteLine("\n\n+".PadRight(99, '-') +"+");
+                string column2 = "|".PadRight(99, ' ') + "|";
+                string column = "|".PadRight(50, ' ') + "Tiket".PadRight(47, ' ') + "|";
+                Console.WriteLine(column);
+                Console.WriteLine("+".PadRight(99, '-') + "+");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("|\n|\n|\t\tNom du caissier : " + Program.currentCaissier.Nom + "\t\t\tDate: " + DateTime.Now.ToShortDateString().PadRight(19, ' ') + "|\n|\n");
+                Program.AfficherTableauFacture(AfficherTiket(achats));
+                Console.Write("|\n|\n|\t\t*******************************************************************\t\t".PadRight(26, ' ') + "|\n".PadRight(98, ' ') + "|".PadLeft(98, ' '));
+                Console.Write(column2);
+                Console.Write("|\n|\t\tmontant total achat : \t\t\t\t" + Montant +" \tFCFA".PadRight(26, ' ') + "|\n".PadRight(98, ' ') + "|".PadLeft(98, ' '));
+                Console.Write(column2);
+                Console.Write("|\n|\t\tremise applique     : \t\t\t\t" + valeurRemise + "  \tFCFA".PadRight(27, ' ') + "|\n".PadRight(98, ' ') + "|".PadLeft(98, ' '));
+                Console.Write(column2);
+                Console.Write("|\n|\t\tnet a payer         : \t\t\t\t" + (Montant - valeurRemise) + " \tFCFA".PadRight(26, ' ') + "|\n".PadRight(98, ' ') + "|".PadLeft(98, ' '));
+                Console.Write(column2);
+                Console.Write("|\n|\t\tencaissement        : \t\t\t\t" + Montant_Percu + " \tFCFA".PadRight(26, ' ') + "|\n".PadRight(98, ' ') + "|".PadLeft(98, ' '));
+                Console.Write(column2);
+                Console.Write("|\n|\t\tremboursement       : \t\t\t\t" + Remboursement + " \tFCFA".PadRight(26, ' ') + "|\n".PadRight(98, ' ') + "|".PadLeft(98, ' ') + "|");
+                Console.Write(column2);
+                Console.Write("|\n|\n+".PadRight(100, '-') + "+");
             }
+            
+            Console.ReadKey();
             Console.WriteLine("\n\nQuitter l'enregistrement des achats");
             Console.ReadKey();
             Console.Clear();
@@ -161,35 +201,39 @@ namespace CaisseEnregistreuse.console
             Affichage.printMenu();
         }
 
-        private static void AfficherTiket(List<Achat> achats)
+        private string[,] AfficherTiket(List<Achat> achats)
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("+".PadRight(100, '-') + "+");
-            string column = "".PadRight(50, ' ') + "Tiket".PadRight(50, ' ') + "|";
-            Console.WriteLine(column);
-            Console.WriteLine("+".PadRight(100, '-') + "+");
-            Console.ForegroundColor = ConsoleColor.White;
-            string[,] produits = new string[achats.Count, 4];
-            produits[0, 0] = "Produits";
-            produits[0, 1] = "Designation";
-            produits[0, 2] = "PrixVente";
-            produits[0, 3] = "Montant";
-            for (int i = 1; i < achats.Count+1; i++)
+
+            string[,] produits = new string[achats.Count+1, 5];
+           
+            for (int i = 0; i < produits.GetLength(0); i++)
             {
                 
-                for (int j = 1; i < 6; j++)
+                for (int j = 0; j < 5; j++)
                 {
-
-                    produits[i, 0] = achats[i]._Produit.Code.ToString();
-                    produits[i, 1] = achats[i]._Produit.Designation.ToString();
-                    produits[i, 2] = achats[i]._Produit.PrixVente.ToString();
-                    produits[i, 3] = achats[i].Montant.ToString();
-                    break;
+                    if (i == 0)
+                    {
+                        produits[i, 0] = "Produits";
+                        produits[i, 1] = "Designation";
+                        produits[i, 2] = "PrixVente";
+                        produits[i, 3] = "Quantite";
+                        produits[i, 4] = "Montant";
+                        break;
+                    }
+                    else
+                    {
+                        produits[i, 0] = achats[i-1]._Produit.Code.ToString();
+                        produits[i, 1] = achats[i-1]._Produit.Designation.ToString();
+                        produits[i, 2] = achats[i-1]._Produit.PrixVente.ToString();
+                        produits[i, 3] = achats[i-1].Quantite.ToString();
+                        produits[i, 4] = achats[i - 1].Montant.ToString();
+                        break;
+                    }
+                    
+                   
                 }
-                Console.WriteLine("Nom du caissier : " + Program.currentCaissier);
-                Program.AfficherTableau(produits);
-
             }
+            return produits;
         }
     }
 }

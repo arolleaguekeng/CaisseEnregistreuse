@@ -151,6 +151,7 @@ namespace CaisseEnregistreuse.console
             }
             
             Console.WriteLine(new string('*', 100));
+            Console.Write("\t\t\t\t\t\t\t\t\t\t\t  CAISSIER : "+ Program.currentCaissier.Nom);
             Console.WriteLine("\n\n");
             string choix = "";
             Console.WriteLine("veuillez entrez votre choix (appuyez sur 1 ou 2)");
