@@ -16,6 +16,7 @@ namespace CaisseEnregistreuse.BO
         public string Date { get; set; }
         public double MontantAchat { get; set; }
         public double MontantVente { get; set; }
+        public string  Designation { get; set; }
 
 
         public Historique()
@@ -23,7 +24,7 @@ namespace CaisseEnregistreuse.BO
 
         }
 
-        public Historique(string codeProduit, int quantiteProduit, double prixAchatProduit, double prixVenteProduit, double montantAchat, double montantVente, double benefice, string date)
+        public Historique(string codeProduit, int quantiteProduit, double prixAchatProduit, double prixVenteProduit, double montantAchat, double montantVente, double benefice, string date,string designation)
         {
             CodeProduit = codeProduit;
             QuantiteProduit = quantiteProduit;
@@ -33,6 +34,7 @@ namespace CaisseEnregistreuse.BO
             Date = date;
             MontantAchat = montantAchat;
             MontantVente = montantVente;
+            Designation = designation;
         }
     }
 }

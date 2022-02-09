@@ -22,7 +22,7 @@ namespace CaisseEnregistreuse.DAL
                 $" (pd.prixVente * (SELECT SUM(quantite) FROM achat WHERE code = pd.code AND numero = p.numero)) as montant ," +
                 $"(pd.prixAchat * (SELECT SUM(quantite) FROM achat WHERE code = pd.code AND numero = p.numero))  as montantTotalAchat " +
                 ",((SELECT SUM(quantite) FROM achat WHERE code = pd.code AND numero = p.numero)*(pd.prixVente - pd.prixAchat)) as benefice" +
-                ",p.date " +
+                ",p.date, designation " +
                 "FROM produit pd LEFT OUTER JOIN achat a on(a.code = pd.code)" +
                 " LEFT OUTER JOIN panier p on(a.numero = p.numero)" +
                 $"WHERE p.date ='{date}' ";
@@ -39,7 +39,8 @@ namespace CaisseEnregistreuse.DAL
                 double.Parse(datareader["montant"].ToString()),
                 double.Parse(datareader["montantTotalAchat"].ToString()),
                 int.Parse(datareader["benefice"].ToString()),
-                datareader["date"].ToString()) ;
+                datareader["date"].ToString(),
+                datareader["designation"].ToString()) ;
         }
 
         private IEnumerable<Parameter> GetParameter(Historique historique)
@@ -52,7 +53,8 @@ namespace CaisseEnregistreuse.DAL
                 new Parameter("montantAchat", System.Data.DbType.Double,historique.MontantAchat == 0?DBNull.Value:(object)historique.PrixVenteProduit ),
                 new Parameter("montantTotalAchat", System.Data.DbType.Double,historique.MontantVente == 0?DBNull.Value:(object)historique.PrixVenteProduit ),
                 new Parameter("benefice", System.Data.DbType.Double,historique.Benefice == 0?DBNull.Value:(object)historique.Benefice),
-                new Parameter("date", System.Data.DbType.String,historique.Date == null?DBNull.Value:(object)historique.Date  , System.Data.ParameterDirection.Output)
+                new Parameter("date", System.Data.DbType.String,historique.Date == null?DBNull.Value:(object)historique.Date  , System.Data.ParameterDirection.Output),
+                new Parameter("designation", System.Data.DbType.String,historique.Designation == null?DBNull.Value:(object)historique.Designation)
 
             };
         }

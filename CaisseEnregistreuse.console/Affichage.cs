@@ -182,6 +182,11 @@ namespace CaisseEnregistreuse.console
                     Console.WriteLine("\n\n\n");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Program.AfficherTableau(hm.AfficherHistorique(date));
+                    Console.WriteLine("Choisir une autre date");
+                    Console.Write(Program.fleche);
+                    var choi = Console.ReadLine();
+                        
+
                 }
                 else
                 {
