@@ -15,6 +15,7 @@ namespace CaisseEnregistreuse.console
         PanierManager panierManager;
         private static Historique_manager hm = new Historique_manager();
         public static fonctionnalite fn = new fonctionnalite();
+
         public Affichage()
         {
             paniers = new List<Panier>();
@@ -182,6 +183,7 @@ namespace CaisseEnregistreuse.console
                     Console.WriteLine("\n\n\n");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Program.AfficherTableau(hm.AfficherHistorique(date));
+                    Console.WriteLine("\nMONTANT TOTAL DES VENTES : "+hm.GetMontantTotal());
                 }
                 else
                 {
