@@ -50,8 +50,8 @@ namespace CaisseEnregistreuse.console
                 Console.Write(Program.fleche);
                 code = Console.ReadLine();
                 var produit = produitManager.Get(new Produit { Code = code });
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                if(produit != null)
+                Console.ForegroundColor = ConsoleColor.White;
+                if (produit != null)
                 {
                     Console.Write("\n\ndesignation du produit                   : \t\t");
                     Console.ForegroundColor = ConsoleColor.Cyan;
@@ -132,6 +132,7 @@ namespace CaisseEnregistreuse.console
             Console.ForegroundColor = ConsoleColor.White;
             if (achats.Count() >= 1)
             {
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("\n\nles achats total de ce panier sont de : \t\t");
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.Write(Montant);
@@ -222,7 +223,7 @@ namespace CaisseEnregistreuse.console
                 }
                 Remboursement = Montant_Percu - Montant + valeurRemise;
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("recapitulatif sur achat");
+                Console.WriteLine("\n\nrecapitulatif sur achat");
                 Console.WriteLine("#########################################################");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\n\tmontant total achat :\t"+Montant + " FCFA");
