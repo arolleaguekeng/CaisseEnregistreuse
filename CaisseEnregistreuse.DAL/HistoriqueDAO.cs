@@ -17,17 +17,20 @@ namespace CaisseEnregistreuse.DAL
 
         public IEnumerable<Historique> Get(Historique historique , string date)
         {
-            string query = $"SELECT DISTINCT pd.code, SUM(a.quantite) as quantiteProduit , pd.prixAchat , pd.prixVente , a.montant ,SUM(pd.prixAchat )* SUM(a.quantite) as montantTotalAchat " +
-                ",SUM(pd.prixVente)*SUM(a.quantite)-SUM(pd.prixAchat)*SUM(a.quantite) as benefice" +
+            string query = $"SELECT DISTINCT pd.code, (SELECT SUM(quantite) FROM achat WHERE code = pd.code AND numero = p.numero) as quantiteProduit ," +
+                $" pd.prixAchat , pd.prixVente ," +
+                $" (pd.prixVente * (SELECT SUM(quantite) FROM achat WHERE code = pd.code AND numero = p.numero)) as montant ," +
+                $"(pd.prixAchat * (SELECT SUM(quantite) FROM achat WHERE code = pd.code AND numero = p.numero))  as montantTotalAchat " +
+                ",((SELECT SUM(quantite) FROM achat WHERE code = pd.code AND numero = p.numero)*(pd.prixVente - pd.prixAchat)) as benefice" +
                 ",p.date " +
-                "FROM produit pd JOIN achat a on(a.code = pd.code)" +
-                " JOIN panier p on(a.numero = p.numero)" +
-                $"WHERE p.date ='{date}' "+
-                "GROUP BY pd.code  , a.quantite,pd.prixAchat, pd.prixVente, a.montant,p.date";
+                "FROM produit pd LEFT OUTER JOIN achat a on(a.code = pd.code)" +
+                " LEFT OUTER JOIN panier p on(a.numero = p.numero)" +
+                $"WHERE p.date ='{date}' ";
             return Read<Historique>(query, GetParameter(historique), GetHistorique, false);
         }
 
         private Historique GetHistorique(System.Data.Common.DbDataReader datareader) {
+
             return new Historique(
                 datareader["code"].ToString(),
                 int.Parse(datareader["quantiteProduit"].ToString()),
@@ -36,7 +39,8 @@ namespace CaisseEnregistreuse.DAL
                 double.Parse(datareader["montant"].ToString()),
                 double.Parse(datareader["montantTotalAchat"].ToString()),
                 int.Parse(datareader["benefice"].ToString()),
-                datareader["date"].ToString()) ; }
+                datareader["date"].ToString()) ;
+        }
 
         private IEnumerable<Parameter> GetParameter(Historique historique)
         {

@@ -15,6 +15,7 @@ namespace CaisseEnregistreuse.console
         private static AchatManager ac = new AchatManager();
         private static CaissierManager cs = new CaissierManager();
         public static Caissier currentCaissier;
+        public static string  fleche = "---> ";
        
         
         public static Affichage affichage = new Affichage();
@@ -27,6 +28,7 @@ namespace CaisseEnregistreuse.console
             affichage.PrintEntete();
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Entrez le matricule du caissier....");
+            Console.Write(Program.fleche);
             matricule = Console.ReadLine();
             try
             {
@@ -69,14 +71,14 @@ namespace CaisseEnregistreuse.console
                 Console.ForegroundColor = ConsoleColor.White;
                
             }
-            
 
 
-         
 
 
-            
-          
+
+
+
+
             Console.ReadKey();
 
 

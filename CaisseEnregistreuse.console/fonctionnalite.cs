@@ -46,10 +46,11 @@ namespace CaisseEnregistreuse.console
                 Console.Clear();
                 Affichage.PrintEntete();
                 //var numPanier = panierManager.Add(new Panier(DateTime.Now));
-                Console.Write("saisissez le code du produit : \t\t ");
+                Console.WriteLine("saisissez le code du produit : ");
+                Console.Write(Program.fleche);
                 code = Console.ReadLine();
                 var produit = produitManager.Get(new Produit { Code = code });
-               
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 if(produit != null)
                 {
                     Console.Write("\n\ndesignation du produit                   : \t\t");
@@ -62,7 +63,8 @@ namespace CaisseEnregistreuse.console
                     Console.ForegroundColor = ConsoleColor.White;
                     do
                     {
-                        Console.Write("\nentrer la quantite de produit de l'achat : \t\t");
+                        Console.WriteLine("\nentrer la quantite de produit de l'achat : ");
+                        Console.Write(Program.fleche);
                         quantite = int.Parse(Console.ReadLine());
                     }
                     while (quantite < 1);
@@ -93,6 +95,7 @@ namespace CaisseEnregistreuse.console
                     //Console.WriteLine($"\n{code}\t\t\t{produit.Designation}\t\t\t\t\t{quantite}\t\t\t\t{produit.PrixVente * quantite}");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("\n\nvoulez vous validez l'achat ? (appuyer sur O ou N)");
+                    Console.Write(Program.fleche);
                     choix = Console.ReadLine();
                     if(choix == "O" || choix == "o")
                     {
@@ -109,6 +112,7 @@ namespace CaisseEnregistreuse.console
                 }
 
                 Console.WriteLine("\n\nvoulez vous continuer les ahats ? (appuyer sur O ou N)");
+                Console.Write(Program.fleche);
                 choix = Console.ReadLine();
                 if (choix == "O" || choix == "o")
                 {
@@ -133,23 +137,28 @@ namespace CaisseEnregistreuse.console
                 Console.Write(Montant);
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(" FCFA");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\n\nvoulez vous applique une remise a ce panier ??? (Appuyer sur O ou N)");
+                Console.Write(Program.fleche);
                 choix = Console.ReadLine();
                 if (choix == "O" || choix == "o")
                 {
                     Console.Clear();
                     Affichage.PrintEntete();
                     Console.WriteLine("\n\nChoix du type de remise a appliquer");
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("\n\n1)remise par pourcentage\t\t\t2)remise par valeur ");
+                    Console.Write(Program.fleche);
                     choix = Console.ReadLine();
                     if (choix == "1")
                     {
                         do
                         {
-                            Console.ForegroundColor = ConsoleColor.White;
-                            Console.Write("\n\nentre une valeur en pourcentage pour la remise : \t\t");
+                            Console.WriteLine("\n\nentre une valeur en pourcentage pour la remise : ");
+                            Console.Write(Program.fleche);
                             valeurRemise = double.Parse(Console.ReadLine());
                         }
+                        
                         while (valeurRemise > 100 || valeurRemise < 0);
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"\n\nRemise de {(Montant * valeurRemise) / 100} FCFA appliquez avec succes");
@@ -169,6 +178,7 @@ namespace CaisseEnregistreuse.console
                         {
                             Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("\n\nentre une valeur  pour la remise");
+                            Console.Write(Program.fleche);
                             valeurRemise = double.Parse(Console.ReadLine());
                         }
                         while (valeurRemise > Montant || valeurRemise < 0);
@@ -200,18 +210,21 @@ namespace CaisseEnregistreuse.console
                 Console.Write("\n\nentrer le montant du client : \t\t");
                 Console.ForegroundColor = ConsoleColor.White;
                 Montant_Percu = double.Parse(Console.ReadLine());
+                Console.Write(Program.fleche);
                 while (Montant_Percu < Montant)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\nle montant doit etre superieur ou egal au montant total des achats");
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("\nveuillez entrer un autre montant !!! : \t\t");
+                    Console.WriteLine("\nveuillez entrer un autre montant !!!");
+                    Console.Write(Program.fleche);
                     Montant_Percu = double.Parse(Console.ReadLine());
                 }
                 Remboursement = Montant_Percu - Montant + valeurRemise;
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("recapitulatif sur achat");
                 Console.WriteLine("#########################################################");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\n\tmontant total achat :\t"+Montant + " FCFA");
                 Console.WriteLine("\n\tmontant du client   :\t" + Montant_Percu + " FCFA");
                 Console.WriteLine("\n\tRemise applique     :\t" + valeurRemise + " FCFA");
