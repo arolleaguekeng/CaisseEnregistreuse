@@ -43,14 +43,15 @@ namespace CaisseEnregistreuse.DAL
 
             return new Historique(
                 datareader["code"].ToString(),
-                datareader["designation"].ToString(),
+
                 int.Parse(datareader["quantiteProduit"].ToString()),
                 double.Parse(datareader["prixAchat"].ToString()),
                 double.Parse(datareader["prixVente"].ToString()),
                 double.Parse(datareader["montant"].ToString()),
                 double.Parse(datareader["montantTotalAchat"].ToString()),
-                int.Parse(datareader["benefice"].ToString()),
-                datareader["date"].ToString()) ;
+                double.Parse(datareader["benefice"].ToString()),
+                datareader["date"].ToString(),
+                datareader["designation"].ToString()) ;
         }
 
         private IEnumerable<Parameter> GetParameter(Historique historique)

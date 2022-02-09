@@ -128,17 +128,17 @@ namespace CaisseEnregistreuse.console
                     }
                     else if (j == 8 && i == 2)
                     {
-                        Console.Write("1) Enregistrer achats\t\t\t\t\t2) Afficher une historique");
+                        Console.Write("1) Enregistrer achats\t\t\t\t\t2) Afficher une historique ");
                         j = 89;
                     }
                     else if(j == 40 && i == 6)
                     {
-                        Console.Write("MONTANT TOTAL EN CAISSE");
+                        Console.Write("3)quitter l'application");
                         j = 62;
                     }
                     else if(j == 48 && i == 8)
                     {
-                        Console.Write($"{Compteur}\tFCFA");
+                        
                         j = 59;
                     }
                     else
@@ -151,9 +151,11 @@ namespace CaisseEnregistreuse.console
                 Console.Write("\t\t");
                 
             }
-            
+
             Console.WriteLine(new string('*', 100));
-            Console.Write("\t\t\t\t\t\t\t\t\t\t\t  CAISSIER : "+ Program.currentCaissier.Nom);
+            Console.Write("\t\tMONTANT TOTAL EN CAISSE");
+            Console.Write($"{Compteur}\tFCFA");
+            Console.Write("\t\t\t\t\t   CAISSIER : "+ Program.currentCaissier.Nom);
             Console.WriteLine("\n\n");
             string choix = "";
             Console.ForegroundColor = ConsoleColor.Cyan;
@@ -170,6 +172,12 @@ namespace CaisseEnregistreuse.console
             {
                 AfficherOptionHistorique();
 
+            }
+            else if(choix =="3")
+            {
+                Console.Clear();
+                AfficherSplash();
+                
             }
             else
             {
@@ -219,48 +227,49 @@ namespace CaisseEnregistreuse.console
         public  void AfficherSplash()
         {
             int tread = 150;
+            Console.WriteLine("\n\n\n\n");
             Console.ForegroundColor = ConsoleColor.Gray;
             System.Threading.Thread.Sleep(tread);
-            Console.WriteLine("|********************|          |****|                 |****|         |*************************|");
+            Console.WriteLine("\t\t\t|********************|          |****|                 |****|         |*************************|");
             System.Threading.Thread.Sleep(tread);
-            Console.WriteLine("|********************|          |****|                 |****|         |*************************|");
+            Console.WriteLine("\t\t\t|********************|          |****|                 |****|         |*************************|");
             System.Threading.Thread.Sleep(tread);
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            Console.WriteLine("\t\t\t       |****|                   |****|                 |****|         |****|");
             System.Threading.Thread.Sleep(tread);
-            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            Console.WriteLine("\t\t\t       |****|                   |****|                 |****|         |****|");
             System.Threading.Thread.Sleep(tread);
-            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            Console.WriteLine("\t\t\t       |****|                   |****|                 |****|         |****|");
             System.Threading.Thread.Sleep(tread);
-            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            Console.WriteLine("\t\t\t       |****|                   |****|                 |****|         |****|");
             System.Threading.Thread.Sleep(tread);
-            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            Console.WriteLine("\t\t\t       |****|                   |****|                 |****|         |****|");
             System.Threading.Thread.Sleep(tread);
-            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            Console.WriteLine("\t\t\t       |****|                   |****|                 |****|         |****|");
             System.Threading.Thread.Sleep(tread);
-            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            Console.WriteLine("\t\t\t       |****|                   |****|                 |****|         |****|");
             System.Threading.Thread.Sleep(tread);
-            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            Console.WriteLine("\t\t\t       |****|                   |****|                 |****|         |****|");
             System.Threading.Thread.Sleep(tread);
-            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            Console.WriteLine("\t\t\t       |****|                   |****|                 |****|         |****|");
             System.Threading.Thread.Sleep(tread);
-            Console.WriteLine("      |*****|                   |****|                 |****|         |****|");
+            Console.WriteLine("\t\t\t       |****|                   |****|                 |****|         |****|");
             System.Threading.Thread.Sleep(tread);
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("|********************|          |***************************|         |*************************|");
+            Console.WriteLine("\t\t\t|********************|          |***************************|         |*************************|");
             System.Threading.Thread.Sleep(tread);
-            Console.WriteLine("|********************|          |***************************|         |*************************|");
+            Console.WriteLine("\t\t\t|********************|          |***************************|         |*************************|");
 
 
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\n\n");
-            Console.WriteLine("\t\t\t\t ************   ************   **************   *************");
-            Console.WriteLine("\t\t\t\t          ***        ***       ***        ***   ***");
-            Console.WriteLine("\t\t\t\t          ***        ***       ***        ***   ***");
-            Console.WriteLine("\t\t\t\t ************        ***       **************   ***");
-            Console.WriteLine("\t\t\t\t          ***        ***       ***        ***   ***");
-            Console.WriteLine("\t\t\t\t          ***        ***       ***        ***   ***");
-            Console.WriteLine("\t\t\t\t ************   ************   ***        ***   *************");
+            Console.WriteLine("\t\t\t\t\t\t\t ************   ************   **************   *************");
+            Console.WriteLine("\t\t\t\t\t\t\t          ***        ***       ***        ***   ***");
+            Console.WriteLine("\t\t\t\t\t\t\t          ***        ***       ***        ***   ***");
+            Console.WriteLine("\t\t\t\t\t\t\t ************        ***       **************   ***");
+            Console.WriteLine("\t\t\t\t\t\t\t          ***        ***       ***        ***   ***");
+            Console.WriteLine("\t\t\t\t\t\t\t          ***        ***       ***        ***   ***");
+            Console.WriteLine("\t\t\t\t\t\t\t ************   ************   ***        ***   *************");
 
         }
     }
