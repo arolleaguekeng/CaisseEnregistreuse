@@ -25,7 +25,7 @@ namespace CaisseEnregistreuse.console
 
         public void PrintEntete()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(new string('*', 133));
             for(int i=0; i<=2; i++)
             {
@@ -67,6 +67,7 @@ namespace CaisseEnregistreuse.console
 
         public void printMenu()
         {
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Compteur = 0;
             paniers = panierManager.Find(new Panier { Date = DateTime.Now });
             foreach (var p in paniers)
@@ -75,7 +76,6 @@ namespace CaisseEnregistreuse.console
             }
 
             Console.Write("\n\n");
-            Console.ForegroundColor = ConsoleColor.White;
             Console.Write("\t\t");
             Console.WriteLine(new string('*', 100));
             for (int i = 0; i <= 2; i++)
@@ -101,6 +101,7 @@ namespace CaisseEnregistreuse.console
                 }
                 Console.WriteLine("*");
             }
+            
             //Console.Write("\t\t");
             //Console.WriteLine(new string('*', 100));
             //Console.Write("\n\n\t\t\t");
@@ -112,6 +113,7 @@ namespace CaisseEnregistreuse.console
 
             Console.Write("\t\t");
             Console.Write(new string('*', 100));
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Write("\t\t\t\t");
             for (int i = 0; i <= 10; i++)
             {
@@ -126,7 +128,7 @@ namespace CaisseEnregistreuse.console
                     }
                     else if (j == 8 && i == 2)
                     {
-                        Console.Write("1) Enregistrer produit\t\t\t\t\t2) Afficher une historique");
+                        Console.Write("1) Demarrer une vente\t\t\t\t\t2) Afficher une historique");
                         j = 89;
                     }
                     else if(j == 40 && i == 6)
@@ -154,7 +156,10 @@ namespace CaisseEnregistreuse.console
             Console.Write("\t\t\t\t\t\t\t\t\t\t\t  CAISSIER : "+ Program.currentCaissier.Nom);
             Console.WriteLine("\n\n");
             string choix = "";
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("veuillez entrez votre choix (appuyez sur 1 ou 2)");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write(Program.fleche);
             choix = Console.ReadLine();
             if (choix == "1")
             {
@@ -163,13 +168,19 @@ namespace CaisseEnregistreuse.console
             }
             else if (choix == "2")
             {
+
                 Console.Clear();
                 this.PrintEntete();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("".PadRight(10,' ') + "Affichage de l'historique d'une journée");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("\n\n\nentrer une date [yyyy-mm-dd] : \t\t");
+                Console.Write(Program.fleche);
                 string date = Console.ReadLine();
                 if (hm.AfficherHistorique(date).Length > 0)
                 {
                     Console.WriteLine("\n\n\n");
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Program.AfficherTableau(hm.AfficherHistorique(date));
                 }
                 else

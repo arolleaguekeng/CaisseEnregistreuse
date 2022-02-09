@@ -31,13 +31,13 @@ namespace CaisseEnregistreuse.BLL
         {
             historiques = GetHistorique(new Historique { Date = date }, date);
             string[,] TabHistory = new string[historiques.Count,8];
-            for(int i=0; i<TabHistory.GetLength(0); i++)
+            for (int i=0; i<TabHistory.GetLength(0); i++)
             {
                 for(int j=0; j<TabHistory.GetLength(1); j++)
                 {
                     if (i == 0)
                     {
-                        Console.ForegroundColor = ConsoleColor.Cyan;
+                       
                         TabHistory[i, 0] = "Date";
                         TabHistory[i, 1] = "Code";
                         TabHistory[i, 2] = "Quantite";
@@ -46,11 +46,11 @@ namespace CaisseEnregistreuse.BLL
                         TabHistory[i, 5] = "Montant achat";
                         TabHistory[i, 6] = "Montant vente";
                         TabHistory[i, 7] = "Benefice";
-                        Console.ForegroundColor = ConsoleColor.White;
                         break;
                     }
                     else
                     {
+                        Console.ForegroundColor = ConsoleColor.White;
                         TabHistory[i, 0] = DateTime.Parse(historiques[i].Date).ToShortDateString();
                         TabHistory[i, 1] = historiques[i].CodeProduit;
                         TabHistory[i, 2] = historiques[i].QuantiteProduit.ToString();

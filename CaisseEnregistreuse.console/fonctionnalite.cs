@@ -46,23 +46,28 @@ namespace CaisseEnregistreuse.console
                 Console.Clear();
                 Affichage.PrintEntete();
                 //var numPanier = panierManager.Add(new Panier(DateTime.Now));
-                Console.Write("saisissez le code du produit : \t\t ");
+                Console.WriteLine("saisissez le code du produit : ");
+                Console.Write(Program.fleche);
                 code = Console.ReadLine();
                 var produit = produitManager.Get(new Produit { Code = code });
-               
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 if(produit != null)
                 { 
-                    Console.WriteLine($"\n\ndesignation du produit : \t\t{produit.Designation}\n\n\nprix de vente du produit : \t\t{produit.PrixVente}");
-                   
+                    Console.WriteLine($"\ndesignation du produit : \t\t{produit.Designation}\n\n\nprix de vente du produit : \t\t{produit.PrixVente}");
+                    Console.ForegroundColor = ConsoleColor.White;
                     do
                     {
-                        Console.Write("\n\nentrer la quantite de produit de l'achat : \t");
+                        Console.WriteLine("\nentrer la quantite de produit de l'achat : ");
+                        Console.Write(Program.fleche);
                         quantite = int.Parse(Console.ReadLine());
                     }
                     while (quantite < 1);
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("\n\nCode\t\t\tDesignation\t\t\t\t\tQuantite de produit\t\t\tMontant Total");
                     Console.WriteLine($"\n{code}\t\t\t{produit.Designation}\t\t\t\t\t{quantite}\t\t\t\t{produit.PrixVente * quantite}");
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("\n\nvoulez vous validez l'achat ? (appuyer sur O ou N)");
+                    Console.Write(Program.fleche);
                     choix = Console.ReadLine();
                     if(choix == "O" || choix == "o")
                     {
@@ -72,11 +77,14 @@ namespace CaisseEnregistreuse.console
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\n\nce code ne correspond a aucun produit");
-                    
+                    Console.ForegroundColor = ConsoleColor.White;
+
                 }
 
                 Console.WriteLine("\n\nvoulez vous continuer les ahats ? (appuyer sur O ou N)");
+                Console.Write(Program.fleche);
                 choix = Console.ReadLine();
                 if (choix == "O" || choix == "o")
                 {
@@ -96,23 +104,32 @@ namespace CaisseEnregistreuse.console
            
             if (achats.Count() >= 1)
             {
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\n\nles achats total de ce panier sont de : \t\t" + Montant);
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\n\nvoulez vous applique une remise a ce panier ??? (Appuyer sur O ou N)");
+                Console.Write(Program.fleche);
                 choix = Console.ReadLine();
                 if (choix == "O" || choix == "o")
                 {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     Console.WriteLine("\n\nChoix de la remise a appliquer");
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("\n\n1)remise par pourcentage\t\t\t2)remise par valeur ");
+                    Console.Write(Program.fleche);
                     choix = Console.ReadLine();
                     if (choix == "1")
                     {
                         do
                         {
-                            Console.Write("\n\nentre une valeur en pourcentage pour la remise : \t\t");
+                            Console.WriteLine("\n\nentre une valeur en pourcentage pour la remise : ");
+                            Console.Write(Program.fleche);
                             valeurRemise = double.Parse(Console.ReadLine());
                         }
+                        
                         while (valeurRemise > 100 || valeurRemise < 0);
-                        Console.WriteLine($"\n\nRemise de {(Montant * valeurRemise) / 100} FCFA appliquez avec succes");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine($"\n\nRemise de {(Montant * valeurRemise) / 100} FCFA appliqué avec succes !");
                         valeurRemise = (Montant * valeurRemise) / 100;
                         numPanier = panierManager.Add(new Panier(DateTime.Now, null, Montant, valeurRemise));
                         for (int i = 0; i < achats.Count(); i++)
@@ -126,11 +143,15 @@ namespace CaisseEnregistreuse.console
                     {
                         do
                         {
+                            Console.ForegroundColor = ConsoleColor.White;
                             Console.WriteLine("\n\nentre une valeur  pour la remise");
+                            Console.Write(Program.fleche);
                             valeurRemise = double.Parse(Console.ReadLine());
                         }
                         while (valeurRemise > Montant || valeurRemise < 0);
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"\n\nRemise de {valeurRemise} FCFA appliquez avec succes");
+                        Console.ForegroundColor = ConsoleColor.White;
                         numPanier = panierManager.Add(new Panier(DateTime.Now, null, Montant, valeurRemise));
                         for (int i = 0; i < achats.Count(); i++)
                         {
@@ -153,18 +174,23 @@ namespace CaisseEnregistreuse.console
                    
                 }
 
-                Console.Write("\n\nentrer le montant percu du client: \t\t");
+                Console.WriteLine("\n\nentrer le montant percu du client:");
                 Montant_Percu = double.Parse(Console.ReadLine());
+                Console.Write(Program.fleche);
                 while (Montant_Percu < Montant)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\nle montant doit etre superieur ou egal au montant total des achats");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("\nveuillez entrer un autre montant !!!");
+                    Console.Write(Program.fleche);
                     Montant_Percu = double.Parse(Console.ReadLine());
                 }
                 Remboursement = Montant_Percu - Montant + valeurRemise;
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Cyan;
                 Console.WriteLine("\n#########################################################");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\n\tmontant total achat :\t"+Montant + " FCFA");
                 Console.WriteLine("\n\tmontant du client   :\t" + Montant_Percu + " FCFA");
                 Console.WriteLine("\n\tRemise applique     :\t" + valeurRemise + " FCFA");

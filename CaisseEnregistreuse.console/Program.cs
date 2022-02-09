@@ -15,6 +15,7 @@ namespace CaisseEnregistreuse.console
         private static AchatManager ac = new AchatManager();
         private static CaissierManager cs = new CaissierManager();
         public static Caissier currentCaissier;
+        public static string  fleche = "---> ";
        
         
         public static Affichage affichage = new Affichage();
@@ -29,6 +30,7 @@ namespace CaisseEnregistreuse.console
             Console.WriteLine("Application console de caisse enregistreuse !");
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("Entrez le matricule du caissier....");
+            Console.Write(Program.fleche);
             matricule = Console.ReadLine();
             var caissier = cs.Get(new Caissier { Matricule = matricule });
             if (caissier != null)
