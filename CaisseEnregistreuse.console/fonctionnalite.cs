@@ -52,8 +52,14 @@ namespace CaisseEnregistreuse.console
                 var produit = produitManager.Get(new Produit { Code = code });
                 Console.ForegroundColor = ConsoleColor.Cyan;
                 if(produit != null)
-                { 
-                    Console.WriteLine($"\ndesignation du produit : \t\t{produit.Designation}\n\n\nprix de vente du produit : \t\t{produit.PrixVente}");
+                {
+                    Console.Write("\n\ndesignation du produit                   : \t\t");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine(produit.Designation);
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write("\nprix de vente du produit                 : \t\t");
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.WriteLine(produit.PrixVente);
                     Console.ForegroundColor = ConsoleColor.White;
                     do
                     {
@@ -62,9 +68,31 @@ namespace CaisseEnregistreuse.console
                         quantite = int.Parse(Console.ReadLine());
                     }
                     while (quantite < 1);
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\n\nCode\t\t\tDesignation\t\t\t\t\tQuantite de produit\t\t\tMontant Total");
-                    Console.WriteLine($"\n{code}\t\t\t{produit.Designation}\t\t\t\t\t{quantite}\t\t\t\t{produit.PrixVente * quantite}");
+                    string[,] TabProduit = new string[2,4];
+                    for(int i=0; i<TabProduit.GetLength(0); i++)
+                    {
+                        for(int j=0; j<TabProduit.GetLength(1); j++)
+                        {
+                            if (i == 0)
+                            {
+                                TabProduit[i, 0] = "Code";
+                                TabProduit[i, 1] = "Designation";
+                                TabProduit[i, 2] = "Quantite de produit";
+                                TabProduit[i, 3] = "Montant total";
+                            }
+                            else
+                            {
+                                TabProduit[i, 0] = produit.Code;
+                                TabProduit[i, 1] =produit.Designation;
+                                TabProduit[i, 2] =  quantite.ToString();
+                                TabProduit[i, 3] = (produit.PrixVente * quantite).ToString();
+                            }
+                        }
+                    }
+                    Program.AfficherTableauDetail(TabProduit);
+                    //Console.WriteLine("\n\nCode\t\t\tDesignation\t\t\t\t\tQuantite de produit\t\t\tMontant Total");
+                    //Console.ForegroundColor = ConsoleColor.Cyan;
+                    //Console.WriteLine($"\n{code}\t\t\t{produit.Designation}\t\t\t\t\t{quantite}\t\t\t\t{produit.PrixVente * quantite}");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("\n\nvoulez vous validez l'achat ? (appuyer sur O ou N)");
                     Console.Write(Program.fleche);
@@ -101,19 +129,23 @@ namespace CaisseEnregistreuse.console
                 }
 
             }
-           
+            Console.ForegroundColor = ConsoleColor.White;
             if (achats.Count() >= 1)
             {
+                Console.Write("\n\nles achats total de ce panier sont de : \t\t");
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("\n\nles achats total de ce panier sont de : \t\t" + Montant);
+                Console.Write(Montant);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine(" FCFA");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\n\nvoulez vous applique une remise a ce panier ??? (Appuyer sur O ou N)");
                 Console.Write(Program.fleche);
                 choix = Console.ReadLine();
                 if (choix == "O" || choix == "o")
                 {
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    Console.WriteLine("\n\nChoix de la remise a appliquer");
+                    Console.Clear();
+                    Affichage.PrintEntete();
+                    Console.WriteLine("\n\nChoix du type de remise a appliquer");
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("\n\n1)remise par pourcentage\t\t\t2)remise par valeur ");
                     Console.Write(Program.fleche);
@@ -129,7 +161,8 @@ namespace CaisseEnregistreuse.console
                         
                         while (valeurRemise > 100 || valeurRemise < 0);
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine($"\n\nRemise de {(Montant * valeurRemise) / 100} FCFA appliqué avec succes !");
+                        Console.WriteLine($"\n\nRemise de {(Montant * valeurRemise) / 100} FCFA appliquez avec succes");
+                        Console.ForegroundColor = ConsoleColor.White;
                         valeurRemise = (Montant * valeurRemise) / 100;
                         numPanier = panierManager.Add(new Panier(DateTime.Now, null, Montant, valeurRemise));
                         for (int i = 0; i < achats.Count(); i++)
@@ -174,7 +207,8 @@ namespace CaisseEnregistreuse.console
                    
                 }
 
-                Console.WriteLine("\n\nentrer le montant percu du client:");
+                Console.Write("\n\nentrer le montant du client : \t\t");
+                Console.ForegroundColor = ConsoleColor.White;
                 Montant_Percu = double.Parse(Console.ReadLine());
                 Console.Write(Program.fleche);
                 while (Montant_Percu < Montant)
@@ -187,36 +221,50 @@ namespace CaisseEnregistreuse.console
                     Montant_Percu = double.Parse(Console.ReadLine());
                 }
                 Remboursement = Montant_Percu - Montant + valeurRemise;
-                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("\n#########################################################");
+                Console.WriteLine("recapitulatif sur achat");
+                Console.WriteLine("#########################################################");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\n\tmontant total achat :\t"+Montant + " FCFA");
                 Console.WriteLine("\n\tmontant du client   :\t" + Montant_Percu + " FCFA");
                 Console.WriteLine("\n\tRemise applique     :\t" + valeurRemise + " FCFA");
                 Console.WriteLine("\n\tRemboursement       :\t" + Remboursement + " FCFA");
+                Console.WriteLine("\nContinuer pour voir la facture ...");
                 Console.ReadKey();
-                Console.WriteLine("\n\n+".PadRight(99, '-') +"+");
-                string column2 = "|".PadRight(99, ' ') + "|";
-                string column = "|".PadRight(50, ' ') + "Tiket".PadRight(47, ' ') + "|";
-                Console.WriteLine(column);
-                Console.WriteLine("+".PadRight(99, '-') + "+");
+                Console.Clear();
+                Affichage.PrintEntete();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\t\t\t\t\t\t\tfacturation de l'achat");
+                Console.WriteLine("\t\t\t\t\t#########################################################\n");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("|\n|\n|\t\tNom du caissier : " + Program.currentCaissier.Nom + "\t\t\tDate: " + DateTime.Now.ToShortDateString().PadRight(19, ' ') + "|\n|\n");
+                Console.WriteLine("\n\n\t+".PadRight(117, '-') +"+");
+                string column2 = "\t|".PadRight(115, ' ') + "|\n";
+                string column = "\t|".PadRight(57, ' ') + "Ticket".PadRight(58, ' ') + "|";
+                Console.WriteLine(column);
+                Console.WriteLine("\t+".PadRight(115, '-') + "+");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(column2);
+                Console.Write("\t|\t\t\tNom du caissier : " + Program.currentCaissier.Nom + "\t\tDate: " + DateTime.Now.ToShortDateString().PadRight(36, ' ') + "|\n");
+                Console.Write(column2);
                 Program.AfficherTableauFacture(AfficherTiket(achats));
-                Console.Write("|\n|\n|\t\t*******************************************************************\t\t".PadRight(26, ' ') + "|\n".PadRight(98, ' ') + "|".PadLeft(98, ' '));
+                Console.Write("\t|\t\t\t********************************************************************\t\t".PadRight(51, ' ') + "          |\n");
                 Console.Write(column2);
-                Console.Write("|\n|\t\tmontant total achat : \t\t\t\t" + Montant +" \tFCFA".PadRight(26, ' ') + "|\n".PadRight(98, ' ') + "|".PadLeft(98, ' '));
+                Console.Write("\t|\t\t\tmontant total achat : \t\t\t\t" + Montant +" FCFA".PadRight(37, ' ') + "|\n");
                 Console.Write(column2);
-                Console.Write("|\n|\t\tremise applique     : \t\t\t\t" + valeurRemise + "  \tFCFA".PadRight(27, ' ') + "|\n".PadRight(98, ' ') + "|".PadLeft(98, ' '));
+                Console.Write("\t|\t\t\tremise applique     : \t\t\t\t" + valeurRemise + " FCFA".PadRight(38, ' ') + "|\n");
                 Console.Write(column2);
-                Console.Write("|\n|\t\tnet a payer         : \t\t\t\t" + (Montant - valeurRemise) + " \tFCFA".PadRight(26, ' ') + "|\n".PadRight(98, ' ') + "|".PadLeft(98, ' '));
+                Console.Write("\t|\t\t\tnet a payer         : \t\t\t\t" + (Montant - valeurRemise) + " FCFA".PadRight(37, ' ') + "|\n");
                 Console.Write(column2);
-                Console.Write("|\n|\t\tencaissement        : \t\t\t\t" + Montant_Percu + " \tFCFA".PadRight(26, ' ') + "|\n".PadRight(98, ' ') + "|".PadLeft(98, ' '));
+                Console.Write("\t|\t\t\tencaissement        : \t\t\t\t" + Montant_Percu + " FCFA".PadRight(37, ' ') + "|\n");
                 Console.Write(column2);
-                Console.Write("|\n|\t\tremboursement       : \t\t\t\t" + Remboursement + " \tFCFA".PadRight(26, ' ') + "|\n".PadRight(98, ' ') + "|".PadLeft(98, ' ') + "|");
+                Console.Write("\t|\t\t\tremboursement       : \t\t\t\t" + Remboursement + " FCFA".PadRight(37, ' ') + "|\n");
                 Console.Write(column2);
-                Console.Write("|\n|\n+".PadRight(100, '-') + "+");
+                Console.Write("\t|\t\t\t********************************************************************\t\t".PadRight(51, ' ') + "          |\n");
+                Console.Write(column2);
+                Console.Write("\t|".PadRight(50, ' ') + "MERCI POUR VOS ACHATS !!!".PadRight(65, ' ') + "|\n");
+                Console.Write(column2);
+                Console.Write("\t+".PadRight(115, '-') + "+");
+                Console.Write("\n\n\t1) Imprimer le ticket \t\t\t\t\t\t\t\t\t2) Terminer");
             }
             
             Console.ReadKey();
