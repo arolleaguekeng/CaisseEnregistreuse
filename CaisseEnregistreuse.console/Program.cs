@@ -35,7 +35,7 @@ namespace CaisseEnregistreuse.console
                 var caissier = cs.Get(new Caissier { Matricule = matricule });
                 if(caissier !=null)
                 {
-                   
+
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"\nConnexion reussie !!");
                     Console.ForegroundColor = ConsoleColor.Cyan;
