@@ -49,14 +49,14 @@ namespace CaisseEnregistreuse.BLL
                     }
                     else
                     {
-                        TabHistory[i, 0] = DateTime.Parse(historiques[i].Date).ToShortDateString();
-                        TabHistory[i, 1] = historiques[i].CodeProduit;
-                        TabHistory[i, 2] = historiques[i].QuantiteProduit.ToString();
-                        TabHistory[i, 3] = historiques[i].PrixAchatProduit.ToString();
-                        TabHistory[i, 4] = historiques[i].PrixVenteProduit.ToString();
-                        TabHistory[i, 6] = historiques[i].MontantAchat.ToString();
-                        TabHistory[i, 5] = historiques[i].MontantVente.ToString();
-                        TabHistory[i, 7] = historiques[i].Benefice.ToString();
+                        TabHistory[i, 0] = DateTime.Parse(historiques[i-1].Date).ToShortDateString();
+                        TabHistory[i, 1] = historiques[i-1].CodeProduit;
+                        TabHistory[i, 2] = historiques[i-1].QuantiteProduit.ToString();
+                        TabHistory[i, 3] = historiques[i-1].PrixAchatProduit.ToString();
+                        TabHistory[i, 4] = historiques[i-1].PrixVenteProduit.ToString();
+                        TabHistory[i, 6] = historiques[i-1].MontantAchat.ToString();
+                        TabHistory[i, 5] = historiques[i-1].MontantVente.ToString();
+                        TabHistory[i, 7] = historiques[i-1].Benefice.ToString();
                         break;
                     }
                     
