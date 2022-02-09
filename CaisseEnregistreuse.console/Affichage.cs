@@ -193,9 +193,9 @@ namespace CaisseEnregistreuse.console
                 Console.WriteLine("\n\n\n");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Program.AfficherTableau(hm.AfficherHistorique(date));
-                Console.WriteLine("1) Entrer une autre date        2)retour au menu principal");
+                Console.WriteLine("\nMONTANT TOTAL DES VENTES : " + hm.GetMontantTotal());
+                Console.WriteLine("\n1) Entrer une autre date        2)retour au menu principal\n");
                 Console.Write(Program.fleche);
-
                 var choi = Console.ReadLine();
                 if (choi == "1")
                 {

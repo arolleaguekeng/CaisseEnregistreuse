@@ -265,7 +265,9 @@ namespace CaisseEnregistreuse.console
                 Console.Write("\t|".PadRight(50, ' ') + "MERCI POUR VOS ACHATS !!!".PadRight(65, ' ') + "|\n");
                 Console.Write(column2);
                 Console.Write("\t+".PadRight(115, '-') + "+");
-                Console.Write("\n\n\t1) Imprimer le ticket \t\t\t\t\t\t\t\t\t2) Terminer");
+                Console.Write("\n\nappuyer sur la touche entrer pour continuer.... ");
+
+                
             }
             
             Console.ReadKey();
