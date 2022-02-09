@@ -168,31 +168,8 @@ namespace CaisseEnregistreuse.console
             }
             else if (choix == "2")
             {
+                AfficherOptionHistorique();
 
-                Console.Clear();
-                this.PrintEntete();
-                Console.ForegroundColor = ConsoleColor.Cyan;
-                Console.WriteLine("".PadRight(10,' ') + "Affichage de l'historique d'une journée");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write("\n\n\nentrer une date [yyyy-mm-dd] : \t\t");
-                Console.Write(Program.fleche);
-                string date = Console.ReadLine();
-                if (hm.AfficherHistorique(date).Length > 0)
-                {
-                    Console.WriteLine("\n\n\n");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Program.AfficherTableau(hm.AfficherHistorique(date));
-                    Console.WriteLine("Choisir une autre date");
-                    Console.Write(Program.fleche);
-                    var choi = Console.ReadLine();
-                        
-
-                }
-                else
-                {
-                    Console.WriteLine("\n\nAucun achat n'a ete effectuer a cette date ");
-                }
-                
             }
             else
             {
@@ -200,7 +177,44 @@ namespace CaisseEnregistreuse.console
             }
         }
 
+        private void AfficherOptionHistorique()
+        {
+            Console.Clear();
+            this.PrintEntete();
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("".PadRight(10, ' ') + "Affichage de l'historique d'une journée");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write("\n\n\nentrer une date [yyyy-mm-dd] : \t\t");
+            Console.Write(Program.fleche);
+            string date = Console.ReadLine();
+            if (hm.AfficherHistorique(date).Length > 0)
+            {
+                Console.WriteLine("\n\n\n");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Program.AfficherTableau(hm.AfficherHistorique(date));
+                Console.WriteLine("1) Entrer une autre date        2)retour au menu principal");
+                Console.Write(Program.fleche);
 
+                var choi = Console.ReadLine();
+                if (choi == "1")
+                {
+                    Console.Clear();
+                    AfficherOptionHistorique();
+                }
+                else
+                {
+                    Console.Clear();
+                    this.PrintEntete();
+                    this.printMenu();
+                }
+
+
+            }
+            else
+            {
+                Console.WriteLine("\n\nAucun achat n'a ete effectuer a cette date ");
+            }
+        }
 
         public  void AfficherSplash()
         {
