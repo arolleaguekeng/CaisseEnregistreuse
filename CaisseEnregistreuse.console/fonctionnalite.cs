@@ -2,6 +2,7 @@
 using CaisseEnregistreuse.BO;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -238,7 +239,7 @@ namespace CaisseEnregistreuse.console
                 Console.WriteLine("\t\t\t\t\t\t\tfacturation de l'achat");
                 Console.WriteLine("\t\t\t\t\t#########################################################\n");
                 Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("\n\n\t+".PadRight(117, '-') +"+");
+                Console.WriteLine("\n\n\t+".PadRight(117, '-') + "+");
                 string column2 = "\t|".PadRight(115, ' ') + "|\n";
                 string column = "\t|".PadRight(57, ' ') + "Ticket".PadRight(58, ' ') + "|";
                 Console.WriteLine(column);
@@ -250,21 +251,23 @@ namespace CaisseEnregistreuse.console
                 Program.AfficherTableauFacture(AfficherTiket(achats));
                 Console.Write("\t|\t\t\t********************************************************************\t\t".PadRight(51, ' ') + "          |\n");
                 Console.Write(column2);
-                Console.Write("\t|\t\t\tmontant total achat : \t\t\t\t" + Montant +" FCFA".PadRight(37, ' ') + "|\n");
+                Console.Write("\t|\t\t\tmontant total achat : \t\t\t\t" + Montant + " FCFA".PadRight(37, ' ') + "|\n");
                 Console.Write(column2);
-                Console.Write("\t|\t\t\tremise applique     : \t\t\t\t" + valeurRemise + " FCFA".PadRight(38, ' ') + "|\n");
+                Console.Write("\t|\t\t\tremise applique     : \t\t\t\t" + valeurRemise + " FCFA".PadRight(38, ' ') + "   |\n");
                 Console.Write(column2);
                 Console.Write("\t|\t\t\tnet a payer         : \t\t\t\t" + (Montant - valeurRemise) + " FCFA".PadRight(37, ' ') + "|\n");
                 Console.Write(column2);
                 Console.Write("\t|\t\t\tencaissement        : \t\t\t\t" + Montant_Percu + " FCFA".PadRight(37, ' ') + "|\n");
                 Console.Write(column2);
-                Console.Write("\t|\t\t\tremboursement       : \t\t\t\t" + Remboursement + " FCFA".PadRight(37, ' ') + "|\n");
+                Console.Write("\t|\t\t\tremboursement       : \t\t\t\t" + Remboursement + " FCFA".PadRight(37, ' ') + " |\n");
                 Console.Write(column2);
                 Console.Write("\t|\t\t\t********************************************************************\t\t".PadRight(51, ' ') + "          |\n");
                 Console.Write(column2);
                 Console.Write("\t|".PadRight(50, ' ') + "MERCI POUR VOS ACHATS !!!".PadRight(65, ' ') + "|\n");
                 Console.Write(column2);
                 Console.Write("\t+".PadRight(115, '-') + "+");
+                string path = "..facture.txt";
+                PrintFile(path, achats, Montant, valeurRemise, Montant_Percu, Remboursement);
                 Console.Write("\n\n\t1) Imprimer le ticket \t\t\t\t\t\t\t\t\t2) Terminer");
             }
             
@@ -310,5 +313,58 @@ namespace CaisseEnregistreuse.console
             }
             return produits;
         }
+
+        private void PrintFile(string path, List<Achat> achats, double Montant, double valeurRemise, double Montant_Percu, double Remboursement)
+        {
+            //1. Get the name of the output file
+            var fileName = path;
+            //2. Create the file
+            var file = new FileStream(fileName, FileMode.Create);
+            //3. Save the standard output
+            var standardOutput = Console.Out;
+            //4. Create a StreamWriter
+            using (var writer = new StreamWriter(file))
+            {
+                //5. Set the new output
+                Console.SetOut(writer);
+                //6. Write something
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("\t\t\t\t\t\t\tfacturation de l'achat");
+                Console.WriteLine("\t\t\t\t\t#########################################################\n");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("\n\n\t+".PadRight(117, '-') + "+");
+                string column2 = "\t|".PadRight(115, ' ') + "|\n";
+                string column = "\t|".PadRight(57, ' ') + "Ticket".PadRight(58, ' ') + "|";
+                Console.WriteLine(column);
+                Console.WriteLine("\t+".PadRight(115, '-') + "+");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.Write(column2);
+                Console.Write("\t|\t\t\tNom du caissier : " + Program.currentCaissier.Nom + "\t\tDate: " + DateTime.Now.ToShortDateString().PadRight(36, ' ') + "|\n");
+                Console.Write(column2);
+                Program.AfficherTableauFacture(AfficherTiket(achats));
+                Console.Write("\t|\t\t\t********************************************************************\t\t".PadRight(51, ' ') + "          |\n");
+                Console.Write(column2);
+                Console.Write("\t|\t\t\tmontant total achat : \t\t\t\t" + Montant + " FCFA".PadRight(37, ' ') + "|\n");
+                Console.Write(column2);
+                Console.Write("\t|\t\t\tremise applique     : \t\t\t\t" + valeurRemise + " FCFA".PadRight(38, ' ') + "   |\n");
+                Console.Write(column2);
+                Console.Write("\t|\t\t\tnet a payer         : \t\t\t\t" + (Montant - valeurRemise) + " FCFA".PadRight(37, ' ') + "|\n");
+                Console.Write(column2);
+                Console.Write("\t|\t\t\tencaissement        : \t\t\t\t" + Montant_Percu + " FCFA".PadRight(37, ' ') + "|\n");
+                Console.Write(column2);
+                Console.Write("\t|\t\t\tremboursement       : \t\t\t\t" + Remboursement + " FCFA".PadRight(37, ' ') + " |\n");
+                Console.Write(column2);
+                Console.Write("\t|\t\t\t********************************************************************\t\t".PadRight(51, ' ') + "          |\n");
+                Console.Write(column2);
+                Console.Write("\t|".PadRight(50, ' ') + "MERCI POUR VOS ACHATS !!!".PadRight(65, ' ') + "|\n");
+                Console.Write(column2);
+                Console.Write("\t+".PadRight(115, '-') + "+");
+                //7. Change the ouput again
+                Console.SetOut(standardOutput);
+            }
+            PrinterClass pt = new PrinterClass();
+            pt.PrintDoc(fileName);
+        }
+
     }
 }
