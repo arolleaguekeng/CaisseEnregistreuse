@@ -15,7 +15,6 @@ namespace CaisseEnregistreuse.console
         PanierManager panierManager;
         private static Historique_manager hm = new Historique_manager();
         public static fonctionnalite fn = new fonctionnalite();
-
         public Affichage()
         {
             paniers = new List<Panier>();
@@ -160,7 +159,7 @@ namespace CaisseEnregistreuse.console
             Console.WriteLine("\n\n");
             string choix = "";
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("veuillez entrez votre choix (appuyez sur 1 ou 2)");
+            Console.WriteLine("veuillez entrez votre choix (appuyez sur 1 ou 2 ou 3)");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write(Program.fleche);
             choix = Console.ReadLine();
@@ -177,7 +176,7 @@ namespace CaisseEnregistreuse.console
             else if(choix =="3")
             {
                 Console.Clear();
-                AfficherSplash();
+                AfficherSplash(); 
                 
             }
             else
@@ -201,9 +200,9 @@ namespace CaisseEnregistreuse.console
                 Console.WriteLine("\n\n\n");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Program.AfficherTableau(hm.AfficherHistorique(date));
-                Console.WriteLine("\nMONTANT TOTAL DES VENTES : " + hm.GetMontantTotal());
-                Console.WriteLine("\n1) Entrer une autre date        2)retour au menu principal\n");
+                Console.WriteLine("1) Entrer une autre date        2)retour au menu principal");
                 Console.Write(Program.fleche);
+
                 var choi = Console.ReadLine();
                 if (choi == "1")
                 {
