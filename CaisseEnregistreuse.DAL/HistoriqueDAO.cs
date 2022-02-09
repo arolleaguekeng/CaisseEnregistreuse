@@ -17,15 +17,25 @@ namespace CaisseEnregistreuse.DAL
 
         public IEnumerable<Historique> Get(Historique historique , string date)
         {
-            string query = $"SELECT DISTINCT pd.code, (SELECT SUM(quantite) FROM achat WHERE code = pd.code AND numero = p.numero) as quantiteProduit ," +
-                $" pd.prixAchat , pd.prixVente ," +
-                $" (pd.prixVente * (SELECT SUM(quantite) FROM achat WHERE code = pd.code AND numero = p.numero)) as montant ," +
-                $"(pd.prixAchat * (SELECT SUM(quantite) FROM achat WHERE code = pd.code AND numero = p.numero))  as montantTotalAchat " +
-                ",((SELECT SUM(quantite) FROM achat WHERE code = pd.code AND numero = p.numero)*(pd.prixVente - pd.prixAchat)) as benefice" +
-                ",p.date " +
-                "FROM produit pd LEFT OUTER JOIN achat a on(a.code = pd.code)" +
-                " LEFT OUTER JOIN panier p on(a.numero = p.numero)" +
-                $"WHERE p.date ='{date}' ";
+            string query = "SELECT DISTINCT pd.code, pd.designation, "+ 
+                "(SELECT SUM(quantite) FROM achat "+
+                                    "WHERE code = pd.code "+
+                                    "AND numero IN(SELECT numero FROM panier WHERE[date] = p.date)) AS quantiteProduit, "+
+                "pd.prixAchat, pd.prixVente, "+
+                "pd.prixVente * (SELECT SUM(quantite) FROM achat "+
+                                                "WHERE code = pd.code "+
+                                                "AND numero IN(SELECT numero FROM panier WHERE[date] = p.date)) AS montant, "+
+                "pd.prixAchat * (SELECT SUM(quantite) FROM achat "+
+                                                "WHERE code = pd.code "+
+                                                "AND numero IN(SELECT numero FROM panier WHERE[date] = p.date)) AS montantTotalAchat, "+
+                "(SELECT SUM(quantite) FROM achat "+
+                                  "WHERE code = pd.code "+
+                                  "AND numero IN(SELECT numero FROM panier WHERE[date] = p.date))*(pd.prixVente - pd.prixAchat) AS benefice, "+
+                "p.date "+
+                "FROM produit pd "+
+                "LEFT OUTER JOIN achat a ON a.code = pd.code "+
+                "LEFT OUTER JOIN panier p ON p.numero = a.numero "+
+                $"WHERE p.date = '{date}' ";
             return Read<Historique>(query, GetParameter(historique), GetHistorique, false);
         }
 
@@ -33,6 +43,7 @@ namespace CaisseEnregistreuse.DAL
 
             return new Historique(
                 datareader["code"].ToString(),
+                datareader["designation"].ToString(),
                 int.Parse(datareader["quantiteProduit"].ToString()),
                 double.Parse(datareader["prixAchat"].ToString()),
                 double.Parse(datareader["prixVente"].ToString()),

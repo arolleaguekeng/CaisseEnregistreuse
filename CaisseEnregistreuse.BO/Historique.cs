@@ -8,6 +8,7 @@ namespace CaisseEnregistreuse.BO
 {
     public class Historique
     {
+        public string Designation { get; set; }
         public string CodeProduit { get; set; }
         public int QuantiteProduit { get; set; }
         public double PrixAchatProduit { get; set; }
@@ -23,9 +24,10 @@ namespace CaisseEnregistreuse.BO
 
         }
 
-        public Historique(string codeProduit, int quantiteProduit, double prixAchatProduit, double prixVenteProduit, double montantAchat, double montantVente, double benefice, string date)
+        public Historique(string codeProduit, string designation, int quantiteProduit, double prixAchatProduit, double prixVenteProduit, double montantAchat, double montantVente, double benefice, string date)
         {
             CodeProduit = codeProduit;
+            Designation = designation;
             QuantiteProduit = quantiteProduit;
             PrixAchatProduit = prixAchatProduit;
             PrixVenteProduit = prixVenteProduit;

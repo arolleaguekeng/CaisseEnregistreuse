@@ -79,13 +79,14 @@ namespace CaisseEnregistreuse.console
                 //Remplissage du tableau des tailles max.
                 for (int i = 0; i < tableau.GetLength(1); i++)
                 {
-                    int tailleMax = tableau[0, i].Length; 
+                    int tailleMax = tableau[0, i]!=null? tableau[0, i].Length:0; 
 
                     for (int j = 0; j < tableau.GetLength(0); j++)
                     {
-                        if (tableau[j, i].Length > tailleMax)
+                    int t = (tableau[j, i] != null) ? tableau[j, i].Length : 0;
+                        if ( t> tailleMax)
                         {
-                            tailleMax = tableau[j, i].Length;
+                            tailleMax = tableau[j, i]!=null?tableau[j, i].Length:0;
                         }
                     }
                     colTailMax[i] = tailleMax*2;
@@ -129,16 +130,18 @@ namespace CaisseEnregistreuse.console
                             Console.Write('|');
                             for (int j = 0; j < tableau.GetLength(1); j++)
                             {
-                                while (tableau[i, j].Length < colTailMax[j])
+                                var t = tableau[i, j] != null ? tableau[i, j].Length : 0;
+                                while (t < colTailMax[j])
                                 {
                                     if(double.TryParse(tableau[i, j],out _))
                                     {
-                                        tableau[i, j] = tableau[i, j].PadLeft(colTailMax[j]);
+                                        tableau[i, j] = tableau[i, j]!=null?tableau[i, j].PadLeft(colTailMax[j]):"";
                                     }
                                     else
                                     {
-                                        tableau[i, j] = tableau[i, j].PadRight(colTailMax[j]);
+                                        tableau[i, j] = tableau[i, j]!=null?tableau[i, j].PadRight(colTailMax[j]):"";
                                     }
+                                    t++;
                                 }
                                 Console.Write((j == colTailMax.Length - 1) ? tableau[i, j] + "|\n" : tableau[i, j] + "|");
                             }
