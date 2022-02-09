@@ -62,6 +62,9 @@ BEGIN
   * 
  FROM 
   panier
+  WHERE
+  numero LIKE IIF(@numero IS NULL,'%',CAST(@numero AS VARCHAR))AND
+  date LIKE IIF(@date IS NULL,'%',CAST(@date AS VARCHAR)) 
 END
 go
 
