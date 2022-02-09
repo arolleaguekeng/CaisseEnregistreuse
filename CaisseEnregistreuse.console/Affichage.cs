@@ -159,7 +159,7 @@ namespace CaisseEnregistreuse.console
             Console.WriteLine("\n\n");
             string choix = "";
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("veuillez entrez votre choix (appuyez sur 1 ou 2)");
+            Console.WriteLine("veuillez entrez votre choix (appuyez sur 1 ou 2 ou 3)");
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write(Program.fleche);
             choix = Console.ReadLine();
@@ -176,7 +176,7 @@ namespace CaisseEnregistreuse.console
             else if(choix =="3")
             {
                 Console.Clear();
-                AfficherSplash();
+                AfficherSplash(); 
                 
             }
             else
