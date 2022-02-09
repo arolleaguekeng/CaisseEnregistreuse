@@ -128,7 +128,7 @@ namespace CaisseEnregistreuse.console
                     }
                     else if (j == 8 && i == 2)
                     {
-                        Console.Write("1) Enregistrer achats\t\t\t\t\t2) Afficher une historique");
+                        Console.Write("1) Demarrer une vente\t\t\t\t\t2) Afficher une historique");
                         j = 89;
                     }
                     else if(j == 40 && i == 6)
@@ -182,11 +182,6 @@ namespace CaisseEnregistreuse.console
                     Console.WriteLine("\n\n\n");
                     Console.ForegroundColor = ConsoleColor.Red;
                     Program.AfficherTableau(hm.AfficherHistorique(date));
-                    Console.WriteLine("Choisir une autre date");
-                    Console.Write(Program.fleche);
-                    var choi = Console.ReadLine();
-                        
-
                 }
                 else
                 {

@@ -18,12 +18,12 @@ INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD01CE', 's
 INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD02CE', 'boite de cereale Nestle', 2500, 3500);
 INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD03CE', 'boite de lait en poudre Nestle', 3000, 5000);
 INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD04CE', 'boite de cafe UCAO 500g', 10000, 13500);
-INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD05CE', 'boite de chocalate tartina 500g', 2500, 5000);
-INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD06CE', 'boite de chocalate bambibo 500g', 2000, 4000);
-INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD07CE', 'tablette de chocolate mambo 15g', 800, 1000);
+INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD05CE', 'boite de chocalat tartina 500g', 2500, 5000);
+INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD06CE', 'boite de chocalat bambibo 500g', 2000, 4000);
+INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD07CE', 'tablette de chocolat mambo 15g', 800, 1000);
 INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD08CE', 'tablette de chocolat blanc 15g', 1050, 2000);
 INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD09CE', 'palette de 36 oeufs', 800, 1800);
-INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD10CE', 'boite de lait non sucre (pink)', 200, 500);
+INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD10CE', 'boite de lait non sucré (pink)', 200, 500);
 INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD11CE', 'sac de farine bijou 10kg', 12500, 16000);
 INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD12CE', 'bouteille d''huile d''arachide', 800, 1400);
 INSERT INTO produit(code, designation, prixAchat, prixVente) VALUES('PD13CE', 'paquet de sucre tantie', 500, 800);
@@ -67,7 +67,7 @@ INSERT INTO achat(quantite, montant, code, numero) VALUES(1, 2000, 'PD08CE', 3)
 INSERT INTO achat(quantite, montant, code, numero) VALUES(2, 3600, 'PD09CE', 1)
 INSERT INTO achat(quantite, montant, code, numero) VALUES(1, 13500, 'PD04CE', 4)
 INSERT INTO achat(quantite, montant, code, numero) VALUES(3, 15000, 'PD05CE', 4)
-INSERT INTO achat(quantite, montant, code, numero) VALUES(1, 2000, 'PD06CE', 4)
+INSERT INTO achat(quantite, montant, code, numero) VALUES(1, 4000, 'PD06CE', 4)
 
 
 
